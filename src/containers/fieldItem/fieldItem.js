@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
+import { removeFiled, setIsRequired } from '../../actions/formInfo';
 import { questionTypes } from '../../lib/questionTypes';
 
 import styles from './fieldItem.css';
 
-export default ({ question }) => {
+export default ({ question, dispatch }) => {
     const switchType = (type) => {
         switch (type) {
             case questionTypes.lineText:
@@ -24,6 +25,13 @@ export default ({ question }) => {
         }
     };
 
+    const _onClickRemove = (event, id) => {
+        event.preventDefault();
+        dispatch(removeFiled(id));
+    };
+
+    const _onClickRequired = (event, id) => dispatch(setIsRequired(id, event.target.checked));
+
     return (
         <div className={styles.wrap}>
             <div className={styles.question}>
@@ -37,10 +45,20 @@ export default ({ question }) => {
 
                 {question.isRequired ? <super className={styles['required-star']}>&nbsp;*</super> : null}
                 </div>
+            
             <div className={styles.choices}>
                 {switchType(question.type)}
             </div>
-            <div className={styles.required}>{question.isRequired ? 'yep' : 'nop'}</div>
+            
+            <div className={styles.required}>
+                <input type="checkbox"
+                    checked={question.isRequired}
+                    onClick={event => _onClickRequired(event, question.id)} />
+            </div>
+            
+            <a href="#"
+                className={styles['remove-button']}
+                onClick={event => _onClickRemove(event, question.id)}>Remove</a>
         </div>
     )
 };

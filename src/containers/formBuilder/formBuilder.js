@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import FieldItem from '../../components/fieldItem/fieldItem';
+import FieldItem from '../fieldItem/fieldItem';
 
 import styles from './formBuilder.css';
 
@@ -32,7 +32,11 @@ const FormBuilder = React.createClass({
                         <div className={styles.required}>Required?</div>
                     </div>
 
-                    {questions.map(question => <FieldItem question={question} key={question.id} />)}
+                    {questions.map(question =>
+                        <FieldItem
+                            question={question}
+                            key={question.id}
+                            dispatch={this.props.dispatch}/>)}
                 </div>
             </div>
         )

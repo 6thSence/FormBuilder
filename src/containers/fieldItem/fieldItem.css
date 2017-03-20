@@ -35,5 +35,12 @@
     }
 
     .required {
+        margin: 0 55px 0 0;
         composes: item;
+    }
+
+    .remove-button {
+        text-decoration: none;
+        color: #FF8CA0;
+        font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
     }

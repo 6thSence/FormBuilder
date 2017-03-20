@@ -1,4 +1,6 @@
-import { ADD_FIELD } from '../constants/formInfo';
+import uuidV1 from 'uuid/v1';
+
+import { ADD_FIELD, REMOVE_FIELD, SET_IS_REQUIRED } from '../constants/formInfo';
 
 const initialState = [
     {
@@ -49,12 +51,25 @@ const initialState = [
 export default function formInfo(state = initialState, action) {
     switch (action.type) {
         case ADD_FIELD:
+            const id = uuidV1();
+
             return [
                     ...state,
                     {
-                        type: action.fieldType
-                    }
+                        type: action.fieldType,
+                        id
+                    },
                 ];
+        case REMOVE_FIELD:
+            return [ ...state.filter(item => item.id !== action.id) ];
+        case SET_IS_REQUIRED:
+            return [ ...state.map(item => {
+                if (item.id === action.id) {
+                    item.isRequired = action.isRequired;
+                }
+
+                return item;
+            }) ];
         default:
             return state;
     }
