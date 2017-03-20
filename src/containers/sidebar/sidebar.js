@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 import styles from './sidebar.css';
 
@@ -14,14 +14,13 @@ export default class Sidebar extends Component {
                     <ul className={styles.list}>
                         <li className={styles.item}>
 
-                            <Link to='/customFields'
+                            <IndexLink to='/'
                                   className={styles.link}
-                                  activeClassName={styles.linkActive}
-                                  isActive>
+                                  activeClassName={styles.linkActive}>
 
                                 Custom fields
 
-                            </Link>
+                            </IndexLink>
 
                         </li>
                         <li className={styles.item}>

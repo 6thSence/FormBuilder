@@ -19,7 +19,6 @@ render(
         <Router history={hashHistory}>
             <Router path='/' component={Home}>
                 <IndexRoute component={CustomFields} />
-                <Router path='/customFields' component={CustomFields} />
                 <Router path='/description' component={Description} />
             </Router>
         </Router>
