@@ -18,7 +18,7 @@ render(
     <Provider store={store}>
         <Router history={hashHistory}>
             <Router path='/' component={Home}>
-                <IndexRoute path='/' component={CustomFields} />
+                <IndexRoute path='/customFields' component={CustomFields} />
                 <Router path='/customFields' component={CustomFields} />
                 <Router path='/description' component={Description} />
             </Router>

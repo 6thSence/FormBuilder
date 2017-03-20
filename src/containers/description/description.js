@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './description.css';
 
-export default class Home extends Component {
+export default class Description extends Component {
 
     render() {
         return (
