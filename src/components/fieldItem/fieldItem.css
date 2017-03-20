@@ -17,6 +17,10 @@
         box-sizing: border-box;
     }
 
+    .required-star {
+        color: #FF0000;
+    }
+
     .choices {
         composes: item;
         width: 26%;

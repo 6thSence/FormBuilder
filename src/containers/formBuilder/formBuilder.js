@@ -4,7 +4,45 @@ import FieldItem from '../../components/fieldItem/fieldItem';
 
 import styles from './formBuilder.css';
 
+const choicesLineText = {
+    type: 'lineText'
+};
+
+const choicesRadioButton = {
+    type: 'radioButton',
+    variables: [
+        {
+            id: 1,
+            variable: 'Yes'
+        },
+        {
+            id: 2,
+            variable: 'No'
+        }
+    ]
+};
+
+const choicesCheckboxes = {
+    type: 'checkboxes',
+    variables: [
+        {
+            id: 1,
+            variable: 'Barkeley'
+        },
+        {
+            id: 2,
+            variable: 'Oakland'
+        },
+        {
+            id: 3,
+            variable: 'San Mateo'
+        }
+    ]
+};
+
 export default class FormBuilder extends Component {
+
+
 
     render() {
         return (
@@ -29,9 +67,9 @@ export default class FormBuilder extends Component {
                         <div className={styles.required}>Required?</div>
                     </div>
 
-                    <FieldItem questionTitle="SSN"/>
-                    <FieldItem questionTitle="Have you driven a car before?"/>
-                    <FieldItem questionTitle="Where do you want to work?"/>
+                    <FieldItem questionTitle="SSN" choices={choicesLineText} isRequired />
+                    <FieldItem questionTitle="Have you driven a car before?" choices={choicesRadioButton} />
+                    <FieldItem questionTitle="Where do you want to work?" choices={choicesCheckboxes} />
                 </div>
             </div>
         )
