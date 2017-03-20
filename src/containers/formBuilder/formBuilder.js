@@ -1,50 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import FieldItem from '../../components/fieldItem/fieldItem';
 
 import styles from './formBuilder.css';
 
-const choicesLineText = {
-    type: 'lineText'
-};
-
-const choicesRadioButton = {
-    type: 'radioButton',
-    variables: [
-        {
-            id: 1,
-            variable: 'Yes'
-        },
-        {
-            id: 2,
-            variable: 'No'
-        }
-    ]
-};
-
-const choicesCheckboxes = {
-    type: 'checkboxes',
-    variables: [
-        {
-            id: 1,
-            variable: 'Barkeley'
-        },
-        {
-            id: 2,
-            variable: 'Oakland'
-        },
-        {
-            id: 3,
-            variable: 'San Mateo'
-        }
-    ]
-};
-
-export default class FormBuilder extends Component {
-
-
-
+const FormBuilder = React.createClass({
     render() {
+        const { questions,
+            description } = this.props;
+
         return (
             <div className={styles.wrap}>
                 <div className={styles.header}>
@@ -57,7 +22,7 @@ export default class FormBuilder extends Component {
                             Description:&nbsp;
                         </span>
 
-                    Welcome aboard!
+                    {description.text || 'You need to add description...'}
                 </p>
 
                 <div className={styles.list}>
@@ -67,11 +32,18 @@ export default class FormBuilder extends Component {
                         <div className={styles.required}>Required?</div>
                     </div>
 
-                    <FieldItem questionTitle="SSN" choices={choicesLineText} isRequired />
-                    <FieldItem questionTitle="Have you driven a car before?" choices={choicesRadioButton} />
-                    <FieldItem questionTitle="Where do you want to work?" choices={choicesCheckboxes} />
+                    {questions.map(question => <FieldItem question={question} key={question.id} />)}
                 </div>
             </div>
         )
     }
+});
+
+const mapStateToProps = (state) => {
+    return {
+        questions: state.formInfo || [],
+        description: state.description
+    };
 };
+
+export default connect(mapStateToProps)(FormBuilder)

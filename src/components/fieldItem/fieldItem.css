@@ -11,10 +11,18 @@
     }
 
     .question {
-        composes: item;
-        width: 48%;
-        padding: 0 0 0 25px;
         box-sizing: border-box;
+        padding: 0 25px 0 25px;
+        width: 48%;
+        composes: item;
+    }
+
+    .question-input {
+        width: 100%;
+        outline: none;
+        border: none;
+        border-bottom: solid 1px;
+        color: #4F4F4F;
     }
 
     .required-star {
@@ -22,8 +30,8 @@
     }
 
     .choices {
-        composes: item;
         width: 26%;
+        composes: item;
     }
 
     .required {

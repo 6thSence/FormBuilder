@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { addField } from '../../actions/formInfo';
+import { questionTypes } from '../../lib/questionTypes';
 
 import Button from '../../components/button/button';
 
 import styles from './customFields.css';
 
-export default class Home extends Component {
-    _onClickHandler() {};
+const Home = React.createClass({
+    _onClickHandler() {},
 
     render() {
         return (
@@ -15,25 +19,33 @@ export default class Home extends Component {
 
                 <ul className={styles.list}>
                     <li className={styles.item}>
-                        <Button text="Single-line text" onClick={this._onClickHandler} />
+                        <Button text="Single-line text"
+                                onClick={() => this.props.dispatch(addField(questionTypes.lineText))} />
                     </li>
                     <li className={styles.item}>
-                        <Button text="Radio button" onClick={this._onClickHandler} />
+                        <Button text="Radio button"
+                                onClick={() => this.props.dispatch(addField(questionTypes.radioButton))} />
                     </li>
                     <li className={styles.item}>
-                        <Button text="Checkboxes" onClick={this._onClickHandler} />
+                        <Button text="Checkboxes"
+                                onClick={() => this.props.dispatch(addField(questionTypes.checkboxes))} />
                     </li>
                     <li className={styles.item}>
-                        <Button text="Select" onClick={this._onClickHandler} />
+                        <Button text="Select"
+                                onClick={() => this.props.dispatch(addField(questionTypes.select))} />
                     </li>
                     <li className={styles.item}>
-                        <Button text="File upload" onClick={this._onClickHandler} />
+                        <Button text="File upload"
+                                onClick={() => this.props.dispatch(addField(questionTypes.fileUploader))} />
                     </li>
                     <li className={styles.item}>
-                        <Button text="Paragraph text" onClick={this._onClickHandler} />
+                        <Button text="Paragraph text"
+                                onClick={() => this.props.dispatch(addField(questionTypes.paragraphText))} />
                     </li>
                 </ul>
             </div>
         )
     }
-};
+});
+
+export default connect((state) => state)(Home);

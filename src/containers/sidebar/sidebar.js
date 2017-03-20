@@ -13,10 +13,27 @@ export default class Sidebar extends Component {
                     <h1 className={styles.title}>San Francisco Driver Form</h1>
                     <ul className={styles.list}>
                         <li className={styles.item}>
-                            <Link to='/customFields' className={styles.link} activeClassName={styles.linkActive}>Custom fields</Link>
+
+                            <Link to='/customFields'
+                                  className={styles.link}
+                                  activeClassName={styles.linkActive}
+                                  isActive>
+
+                                Custom fields
+
+                            </Link>
+
                         </li>
                         <li className={styles.item}>
-                            <Link to='/description' className={styles.link} activeClassName={styles.linkActive}>Description (Optional)</Link>
+
+                            <Link to='/description'
+                                  className={styles.link}
+                                  activeClassName={styles.linkActive}>
+
+                                Description (Optional)
+
+                            </Link>
+
                         </li>
                     </ul>
                     {this.props.children}
