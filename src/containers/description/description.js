@@ -7,7 +7,9 @@ export default class Home extends Component {
     render() {
         return (
             <div className={styles.wrap}>
-                it's description
+                <p className={styles.description}>Optional form description.</p>
+                <h2 className={styles.title}>Form Description</h2>
+                <textarea className={styles.textarea} placeholder="Welcome aboard!" />
             </div>
         )
     }
