@@ -30,7 +30,7 @@ export default ({ question, dispatch }) => {
         dispatch(removeFiled(id));
     };
 
-    const _onClickRequired = (event, id) => dispatch(setIsRequired(id, event.target.checked));
+    const _onClickRequired = (isRequired, id) => dispatch(setIsRequired(id, !isRequired));
 
     return (
         <div className={styles.wrap}>
@@ -50,10 +50,11 @@ export default ({ question, dispatch }) => {
                 {switchType(question.type)}
             </div>
             
-            <div className={styles.required}>
-                <input type="checkbox"
-                    checked={question.isRequired}
-                    onClick={event => _onClickRequired(event, question.id)} />
+            <div className={styles['required-inner']}>
+                <a className={question.isRequired ? styles.required : styles['not-required']}
+                        href="#"
+                   onClick={() => _onClickRequired(question.isRequired, question.id)}
+                />
             </div>
             
             <a href="#"

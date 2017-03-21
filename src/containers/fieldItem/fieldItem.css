@@ -34,10 +34,22 @@
         composes: item;
     }
 
-    .required {
-        margin: 0 55px 0 0;
+    .required-inner {
+        margin: 0 60px 0 0;
         composes: item;
     }
+
+        .required {
+            display: block;
+            size: 12px 100%;
+            background: inline('./assets/Checkmark.svg') center no-repeat,
+                inline('./assets/Rectangle.svg') center no-repeat;
+        }
+
+        .not-required {
+            composes: required;
+            background: inline('./assets/Rectangle.svg') center no-repeat;
+        }
 
     .remove-button {
         text-decoration: none;
