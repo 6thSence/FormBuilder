@@ -12,7 +12,7 @@
 
     .question {
         box-sizing: border-box;
-        padding: 0 25px 0 25px;
+        padding: 0 25px;
         width: 48%;
         composes: item;
     }
@@ -21,12 +21,27 @@
         width: 100%;
         outline: none;
         border: none;
-        border-bottom: solid 1px;
         color: #4F4F4F;
+        font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
     }
 
     .required-star {
         color: #FF0000;
+    }
+
+    .edit-button {
+        display: inline-block;
+        padding: 0 0 0 10px;
+        background: inline('./assets/edit.svg') right/contain no-repeat;
+        vertical-align: middle;
+        cursor: pointer;
+        opacity: 1;
+        transition: opacity .3s;
+        size: 7px 100%;
+
+        &:hover {
+            opacity: .4;
+        }
     }
 
     .choices {
@@ -41,18 +56,18 @@
 
         .required {
             display: block;
-            size: 12px 100%;
             background: inline('./assets/Checkmark.svg') center no-repeat,
                 inline('./assets/Rectangle.svg') center no-repeat;
+            size: 12px 100%;
         }
 
         .not-required {
-            composes: required;
             background: inline('./assets/Rectangle.svg') center no-repeat;
+            composes: required;
         }
 
     .remove-button {
-        text-decoration: none;
         color: #FF8CA0;
+        text-decoration: none;
         font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
     }
