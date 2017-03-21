@@ -13,6 +13,15 @@
         font: 10px OpenSansRegular, Helvetica, sans-serif;
     }
 
+    .checkbox {
+        display: inline-block;
+        margin: 0 5px 0 0;
+        padding: 0 0 0 15px;
+        background: inline('./assets/Rectangle.svg') left/contain no-repeat;
+        color: #BFBFBF;
+        font: 10px OpenSansRegular, Helvetica, sans-serif;
+    }
+
     .choice-input {
         outline: none;
         border: 0;

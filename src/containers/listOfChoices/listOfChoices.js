@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 import { changeChoiceText, toggleEditChoice, removeChoice, addChoice } from '../../actions/formInfo';
+import { questionTypes } from '../../lib/questionTypes';
 
-import styles from './radioButtons.css';
+import styles from './listOfChoices.css';
 
-export default ({ choices, questionId, dispatch }) => {
+export default ({ choices, questionId, dispatch, type }) => {
     const _onClickEdit = (event, questionId, choiceId) => {
         event.preventDefault();
 
@@ -24,6 +25,17 @@ export default ({ choices, questionId, dispatch }) => {
         event.preventDefault();
 
         dispatch(addChoice(questionId))
+    };
+
+    const setTypeOfChoice = () => {
+        switch(type) {
+            case questionTypes.radioButton:
+                return styles.radio;
+            case questionTypes.checkboxes:
+                return styles.checkbox;
+            default:
+                return styles.radio;
+        }
     };
 
     return(
@@ -46,7 +58,7 @@ export default ({ choices, questionId, dispatch }) => {
                                    autoFocus
                             />
                             :
-                            <label className={styles.radio}
+                            <label className={setTypeOfChoice()}
                                      value={choice.text}
                                      id={choice.id}>
 

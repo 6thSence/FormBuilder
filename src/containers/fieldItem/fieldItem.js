@@ -4,7 +4,7 @@ import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../.
 import { questionTypes } from '../../lib/questionTypes';
 
 import LineText from '../../components/lineText/lineText';
-import RadioButtons from '../radioButtons/radioButtons';
+import ListOfChoices from '../listOfChoices/listOfChoices';
 
 import styles from './fieldItem.css';
 
@@ -14,11 +14,17 @@ export default ({ question, dispatch }) => {
             case questionTypes.lineText:
                 return <LineText />;
             case questionTypes.radioButton:
-                return <RadioButtons choices={question.choices}
-                                     questionId={question.id}
-                                     dispatch={dispatch} />;
+                return <ListOfChoices choices={question.choices}
+                    questionId={question.id}
+                    dispatch={dispatch}
+                    type={questionTypes.radioButton}
+                    />;
             case questionTypes.checkboxes:
-                return 'checkboxes';
+                return <ListOfChoices choices={question.choices}
+                    questionId={question.id}
+                    dispatch={dispatch}
+                    type={questionTypes.checkboxes}
+                    />;
             case questionTypes.select:
                 return 'select';
             case questionTypes.fileUploader:
