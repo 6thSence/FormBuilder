@@ -4,16 +4,19 @@ import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../.
 import { questionTypes } from '../../lib/questionTypes';
 
 import LineText from '../../components/lineText/lineText';
+import RadioButtons from '../radioButtons/radioButtons';
 
 import styles from './fieldItem.css';
 
-export default ({question, dispatch}) => {
+export default ({ question, dispatch }) => {
     const switchType = (type) => {
         switch (type) {
             case questionTypes.lineText:
                 return <LineText />;
             case questionTypes.radioButton:
-                return 'radioButton';
+                return <RadioButtons choices={question.choices}
+                                     questionId={question.id}
+                                     dispatch={dispatch} />;
             case questionTypes.checkboxes:
                 return 'checkboxes';
             case questionTypes.select:

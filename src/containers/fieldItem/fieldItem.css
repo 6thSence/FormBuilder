@@ -46,7 +46,6 @@
 
     .choices {
         box-sizing: border-box;
-        padding: 0 80px 0 0;
         width: 26%;
         composes: item;
     }

@@ -9,8 +9,7 @@ export default function configureStore(initialState) {
     const logger = createLogger();
     const enhancers = compose(
         applyMiddleware(logger),
-        DevTools.instrument(),
-        persistState()
+        DevTools.instrument()
     );
     const store = createStore(
         rootReducer,

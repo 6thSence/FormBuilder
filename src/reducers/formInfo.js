@@ -1,6 +1,14 @@
 import uuidV1 from 'uuid/v1';
 
-import { ADD_FIELD, REMOVE_FIELD, SET_IS_REQUIRED, EDIT_QUESTION, CHANGE_QUESTION_TEXT } from '../constants/formInfo';
+import { ADD_FIELD,
+    REMOVE_FIELD,
+    SET_IS_REQUIRED,
+    EDIT_QUESTION,
+    CHANGE_QUESTION_TEXT,
+    TOGGLE_EDDIT_CHOICE,
+    CHANGE_CHOICE_TEXT,
+    REMOVE_CHOICE,
+    ADD_CHOICE } from '../constants/formInfo';
 
 const initialState = [
     {
@@ -11,14 +19,14 @@ const initialState = [
     },
     {
         type: 'radioButton',
-        variables: [
+        choices: [
             {
                 id: 1,
-                variable: 'Yes'
+                text: 'Yes'
             },
             {
                 id: 2,
-                variable: 'No'
+                text: 'No'
             }
         ],
         text: 'Have you driven a car before?',
@@ -28,18 +36,18 @@ const initialState = [
     },
     {
         type: 'checkboxes',
-        variables: [
+        choices: [
             {
                 id: 1,
-                variable: 'Barkeley'
+                text: 'Barkeley'
             },
             {
                 id: 2,
-                variable: 'Oakland'
+                text: 'Oakland'
             },
             {
                 id: 3,
-                variable: 'San Mateo'
+                text: 'San Mateo'
             }
         ],
         text: 'Where do you want to work?',
@@ -83,6 +91,48 @@ export default function formInfo(state = initialState, action) {
                 if (item.id === action.id) {
                     item.text = action.text;
                 }
+
+                return item;
+            }) ];
+        case TOGGLE_EDDIT_CHOICE:
+            return [ ...state.map(item => {
+                if (item.id === action.questionId) {
+                    item.choices.forEach(choice => {
+                        if (choice.id === action.choiceId) {
+                            choice.isEditing = action.isEditing;
+                            choice.text = choice.text || 'Write choice';
+                        };
+                    });
+                }
+
+                return item;
+            }) ];
+        case CHANGE_CHOICE_TEXT:
+            return [ ...state.map(item => {
+                if (item.id === action.questionId) {
+                    item.choices.forEach(choice => {
+                        if (choice.id === action.choiceId) { choice.text = action.text };
+                    });
+                }
+
+                return item;
+            }) ];
+        case REMOVE_CHOICE:
+            return [ ...state.map(item => {
+                if (item.id === action.questionId) {
+                    item.choices = item.choices.filter(choice => choice.id !== action.choiceId) ;
+                };
+
+                return item;
+            }) ];
+        case ADD_CHOICE:
+            return [ ...state.map(item => {
+                if (item.id === action.questionId) {
+                    item.choices.push({
+                        id: uuidV1(),
+                        isEditing: true
+                    });
+                };
 
                 return item;
             }) ];
