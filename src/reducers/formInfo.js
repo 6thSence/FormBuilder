@@ -65,7 +65,13 @@ export default function formInfo(state = initialState, action) {
                     ...state,
                     {
                         type: action.fieldType,
-                        id
+                        id,
+                        choices: [
+                            {
+                                id: uuidV1(),
+                                text: 'Write choice'
+                            }
+                        ]
                     },
                 ];
         case REMOVE_FIELD:
