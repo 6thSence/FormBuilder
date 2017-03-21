@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
-import {removeFiled, setIsRequired, toggleEdit, changeQuestionText} from '../../actions/formInfo';
-import {questionTypes} from '../../lib/questionTypes';
+import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../../actions/formInfo';
+import { questionTypes } from '../../lib/questionTypes';
+
+import LineText from '../../components/lineText/lineText';
 
 import styles from './fieldItem.css';
 
@@ -9,7 +11,7 @@ export default ({question, dispatch}) => {
     const switchType = (type) => {
         switch (type) {
             case questionTypes.lineText:
-                return 'lineText';
+                return <LineText />;
             case questionTypes.radioButton:
                 return 'radioButton';
             case questionTypes.checkboxes:
@@ -27,17 +29,26 @@ export default ({question, dispatch}) => {
 
     const _onClickRemove = (event, id) => {
         event.preventDefault();
+
         dispatch(removeFiled(id));
     };
 
-    const _onClickRequired = (isRequired, id) => dispatch(setIsRequired(id, !isRequired));
+    const _onClickRequired = (event, isRequired, id) => {
+        event.preventDefault();
+
+        dispatch(setIsRequired(id, !isRequired));
+    };
 
     const _onKeyPressEdit = (event, id) => {
         if (event.key == 'Enter') {
-            console.log('_onKeyPressEdit');
-            console.log('event.keyCode = ', event.keyCode);
             dispatch(toggleEdit(id, false));
         }
+    };
+
+    const _onClickEdite = (event, id, isEditing) => {
+        event.preventDefault();
+
+        dispatch(toggleEdit(id, isEditing));
     };
 
     return (
@@ -56,9 +67,12 @@ export default ({question, dispatch}) => {
                     : question.text || "Write your question..."
                 }
 
-                {question.isRequired ? <super className={styles['required-star']}>&nbsp;*</super> : null}
-                {!question.isEditing ? <a className={styles['edit-button']}
-                                          onClick={() => dispatch(toggleEdit(question.id, !question.isEditing))}/> : null}
+                {question.isRequired && !question.isEditing ?
+                    <super className={styles['required-star']}>&nbsp;*</super> : null}
+
+                {!question.isEditing ?
+                    <a className={styles['edit-button']}
+                        onClick={(event) => _onClickEdite(event, question.id, !question.isEditing)}/> : null}
             </div>
 
             <div className={styles.choices}>
@@ -68,7 +82,7 @@ export default ({question, dispatch}) => {
             <div className={styles['required-inner']}>
                 <a className={question.isRequired ? styles.required : styles['not-required']}
                    href="#"
-                   onClick={() => _onClickRequired(question.isRequired, question.id)}
+                   onClick={event => _onClickRequired(event, question.isRequired, question.id)}
                 />
             </div>
 

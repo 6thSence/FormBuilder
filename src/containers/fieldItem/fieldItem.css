@@ -1,11 +1,10 @@
 .wrap {
     display: flex;
     margin: 0 0 15px;
-    min-height: 25px;
+    min-height: 20px;
 }
 
     .item {
-        margin: 0 0 10px;
         color: #4F4F4F;
         font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
     }
@@ -32,12 +31,13 @@
     .edit-button {
         display: inline-block;
         padding: 0 0 0 10px;
-        background: inline('./assets/edit.svg') right/contain no-repeat;
+        background: inline('./assets/edit.svg') right no-repeat;
+        background-clip: content-box;
         vertical-align: middle;
-        cursor: pointer;
         opacity: 1;
+        cursor: pointer;
         transition: opacity .3s;
-        size: 7px 100%;
+        size: 10px 100%;
 
         &:hover {
             opacity: .4;
@@ -45,6 +45,8 @@
     }
 
     .choices {
+        box-sizing: border-box;
+        padding: 0 80px 0 0;
         width: 26%;
         composes: item;
     }
@@ -58,7 +60,12 @@
             display: block;
             background: inline('./assets/Checkmark.svg') center no-repeat,
                 inline('./assets/Rectangle.svg') center no-repeat;
+            transition: opacity .3s;
             size: 12px 100%;
+
+            &:hover {
+                opacity: .4;
+            }
         }
 
         .not-required {
@@ -69,5 +76,10 @@
     .remove-button {
         color: #FF8CA0;
         text-decoration: none;
-        font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
+        font: 10px/25px OpenSansRegular, Helvetica, Arial, sans-serif;
+        transition: opacity .3s;
+
+        &:hover {
+            opacity: .4;
+        }
     }
