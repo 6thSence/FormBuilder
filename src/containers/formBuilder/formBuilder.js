@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 
 import { setFieldsList } from '../../actions/formInfo';
+import { saveForm, setWarnings } from '../../actions/formStatus';
+import { warnings } from '../../lib/warnings';
 
 import FieldItem from '../fieldItem/fieldItem';
 import Warning from '../../components/warning/warning';
 
 import styles from './formBuilder.css';
 
-const SortableList = SortableContainer(({ items, dispatch}) => {
+const SortableList = SortableContainer(({ items, dispatch }) => {
     return(
         <ul className={styles['fields-list']}>
             {items.map((item, index) =>
@@ -32,8 +34,16 @@ const FormBuilder = React.createClass({
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            items: nextProps.questions,
+            items: nextProps.questions
         });
+    },
+
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.isSaved && this.props.isSaved ) {
+            this.props.dispatch(saveForm(false));
+        }
+
+        return true;
     },
 
     onSortEnd({ oldIndex, newIndex }) {
@@ -46,18 +56,42 @@ const FormBuilder = React.createClass({
         this.props.dispatch(setFieldsList(newFieldList));
     },
 
+    validation(event) {
+        event.preventDefault();
+
+        if (this.props.isSaved) {
+            return true;
+        }
+
+        const questions = this.state.items;
+        const currentWarnings = [];
+
+        questions.forEach(question => !question.text ? currentWarnings.push({
+            text: warnings.emptyQuestion,
+            id: currentWarnings.length
+        }) : null);
+
+        currentWarnings.length === 0 ?
+            this.props.dispatch(saveForm(true))
+            : this.props.dispatch(setWarnings(currentWarnings));
+    },
+
     render() {
-        const { questions,
-            description } = this.props;
+        const { description,
+            isSaved,
+            warnings,
+            dispatch } = this.props;
 
         return (
             <div className={styles.wrap}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>San Francisco Driver Form</h2>
-                    <a className={styles.button} href="#">Save Form</a>
+                    <a className={styles.button} href="#" onClick={this.validation}>Save Form</a>
                 </div>
 
-                <Warning text="Choices must be non empty" />
+                {isSaved && <Warning text="Form saved" isSaved />}
+
+                {warnings.map(warning => <Warning text={warning.text} key={`warning-${warning.id}`} />)}
 
                 <p className={styles.description}>
                         <span className={styles['description-title']}>
@@ -76,7 +110,7 @@ const FormBuilder = React.createClass({
 
                     <SortableList
                         items={this.state.items}
-                        dispatch={this.props.dispatch}
+                        dispatch={dispatch}
                         onSortEnd={this.onSortEnd}
                         useDragHandle={true}
                         />
@@ -89,7 +123,9 @@ const FormBuilder = React.createClass({
 const mapStateToProps = (state) => {
     return {
         questions: state.formInfo || [],
-        description: state.description
+        description: state.description,
+        isSaved: state.formStatus.isSaved,
+        warnings: state.formStatus.warnings
     };
 };
 

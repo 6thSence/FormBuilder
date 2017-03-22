@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { addField } from '../../actions/formInfo';
@@ -9,7 +9,11 @@ import Button from '../../components/button/button';
 import styles from './customFields.css';
 
 const Home = React.createClass({
-    _onClickHandler() {},
+    onClickAddField(event, type) {
+        event.preventDefault();
+
+        this.props.dispatch(addField(type));
+    },
 
     render() {
         return (
@@ -20,27 +24,27 @@ const Home = React.createClass({
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <Button text="Single-line text"
-                                onClick={() => this.props.dispatch(addField(questionTypes.lineText))} />
+                                onClick={event => this.onClickAddField(event, questionTypes.lineText)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Radio button"
-                                onClick={() => this.props.dispatch(addField(questionTypes.radioButton))} />
+                                onClick={event => this.onClickAddField(event, questionTypes.radioButton)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Checkboxes"
-                                onClick={() => this.props.dispatch(addField(questionTypes.checkboxes))} />
+                                onClick={event => this.onClickAddField(event, questionTypes.checkboxes)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Select"
-                                onClick={() => this.props.dispatch(addField(questionTypes.select))} />
+                                onClick={event => this.onClickAddField(event, questionTypes.select)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="File upload"
-                                onClick={() => this.props.dispatch(addField(questionTypes.fileUploader))} />
+                                onClick={event => this.onClickAddField(event, questionTypes.fileUploader)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Paragraph text"
-                                onClick={() => this.props.dispatch(addField(questionTypes.paragraphText))} />
+                                onClick={event => this.onClickAddField(event, questionTypes.paragraphText)} />
                     </li>
                 </ul>
             </div>
