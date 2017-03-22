@@ -8,7 +8,8 @@ import { ADD_FIELD,
     TOGGLE_EDDIT_CHOICE,
     CHANGE_CHOICE_TEXT,
     REMOVE_CHOICE,
-    ADD_CHOICE } from '../constants/formInfo';
+    ADD_CHOICE,
+    SET_FIELDS_LIST } from '../constants/formInfo';
 
 const initialState = [
     {
@@ -146,6 +147,10 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+        case SET_FIELDS_LIST:
+            console.log('SET_FIELDS_LIST = ', SET_FIELDS_LIST);
+            console.log('action.newFieldsList = ', action.newFieldsList);
+            return [ ...action.newFieldsList ];
         default:
             return state;
     }

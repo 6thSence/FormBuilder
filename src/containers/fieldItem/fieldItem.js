@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { SortableElement } from 'react-sortable-hoc';
 
 import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../../actions/formInfo';
 import { questionTypes } from '../../lib/questionTypes';
@@ -11,7 +12,7 @@ import ParagraphText from '../../components/paragraphText/paragraphText';
 
 import styles from './fieldItem.css';
 
-export default ({ question, dispatch }) => {
+export default SortableElement(({ question, dispatch }) => {
     const switchType = (type) => {
         switch (type) {
             case questionTypes.lineText:
@@ -67,9 +68,9 @@ export default ({ question, dispatch }) => {
     };
 
     return (
-        <div className={styles.wrap}>
+        <li className={styles.wrap}>
             <div className={styles.question}>
-                {question.isEditing ?
+                { question.isEditing ?
                     <input type="text"
                            value={question.text}
                            placeholder="Write your question..."
@@ -104,6 +105,6 @@ export default ({ question, dispatch }) => {
             <a href="#"
                className={styles['remove-button']}
                onClick={event => _onClickRemove(event, question.id)}>Remove</a>
-        </div>
+        </li>
     )
-};
+});

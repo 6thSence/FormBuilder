@@ -1,11 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { SortableContainer, arrayMove } from 'react-sortable-hoc';
+
+import { setFieldsList } from '../../actions/formInfo';
 
 import FieldItem from '../fieldItem/fieldItem';
 
 import styles from './formBuilder.css';
 
+const SortableList = SortableContainer(({ items, dispatch}) => {
+    return(
+        <ul className={styles['fields-list']}>
+            {items.map((item, index) =>
+                <FieldItem
+                    question={item}
+                    key={`item-${index}`}
+                    index={index}
+                    dispatch={dispatch}/>
+                )}
+        </ul>
+    )
+});
+
 const FormBuilder = React.createClass({
+    getInitialState() {
+        return {
+            items: this.props.questions
+        }
+    },
+
+    onSortEnd({ oldIndex, newIndex }) {
+        const newFieldList = arrayMove(this.state.items, oldIndex, newIndex);
+
+        this.setState({
+            items: newFieldList,
+        });
+
+        this.props.dispatch(setFieldsList(newFieldList));
+    },
+
     render() {
         const { questions,
             description } = this.props;
@@ -32,11 +65,11 @@ const FormBuilder = React.createClass({
                         <div className={styles.required}>Required?</div>
                     </div>
 
-                    {questions.map(question =>
-                        <FieldItem
-                            question={question}
-                            key={question.id}
-                            dispatch={this.props.dispatch}/>)}
+                    <SortableList
+                        items={this.state.items}
+                        dispatch={this.props.dispatch}
+                        onSortEnd={this.onSortEnd}
+                        />
                 </div>
             </div>
         )

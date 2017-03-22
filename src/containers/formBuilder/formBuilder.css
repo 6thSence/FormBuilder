@@ -68,17 +68,23 @@
         }
 
         .question {
-            composes: fields-title;
-            width: 48%;
-            padding: 0 0 0 25px;
             box-sizing: border-box;
+            padding: 0 0 0 25px;
+            width: 48%;
+            composes: fields-title;
         }
 
         .choices {
-            composes: fields-title;
             width: 26%;
+            composes: fields-title;
         }
 
         .required {
             composes: fields-title;
         }
+
+    .fields-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }

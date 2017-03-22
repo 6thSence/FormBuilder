@@ -6,7 +6,8 @@ import { ADD_FIELD,
     TOGGLE_EDDIT_CHOICE,
     CHANGE_CHOICE_TEXT,
     REMOVE_CHOICE,
-    ADD_CHOICE } from '../constants/formInfo';
+    ADD_CHOICE,
+    SET_FIELDS_LIST } from '../constants/formInfo';
 
 export const addField = (fieldType) => {
     return {
@@ -76,5 +77,12 @@ export const addChoice = (questionId) => {
     return {
         type: ADD_CHOICE,
         questionId
+    }
+};
+
+export const setFieldsList = (newFieldsList) => {
+    return {
+        type: SET_FIELDS_LIST,
+        newFieldsList
     }
 };
