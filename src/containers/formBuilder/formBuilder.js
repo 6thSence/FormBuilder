@@ -5,6 +5,7 @@ import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 import { setFieldsList } from '../../actions/formInfo';
 
 import FieldItem from '../fieldItem/fieldItem';
+import Warning from '../../components/warning/warning';
 
 import styles from './formBuilder.css';
 
@@ -55,6 +56,8 @@ const FormBuilder = React.createClass({
                     <h2 className={styles.title}>San Francisco Driver Form</h2>
                     <a className={styles.button} href="#">Save Form</a>
                 </div>
+
+                <Warning text="Choices must be non empty" />
 
                 <p className={styles.description}>
                         <span className={styles['description-title']}>

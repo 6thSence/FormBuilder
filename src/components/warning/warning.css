@@ -1,0 +1,8 @@
+.wrap {
+    margin: 0 0 20px;
+    padding: 20px 25px;
+    border: solid 1px #EBCCCC;
+    border-radius: 4px;
+    color: #A94442 #F2DEDE;
+    font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+}
