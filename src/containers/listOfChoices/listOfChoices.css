@@ -4,6 +4,22 @@
     list-style: none;
 }
 
+.selectList {
+    width: 80%;
+    border: solid 1px #BFBFBF;
+    list-style: none;
+    composes: list;
+
+    & .item {
+        padding: 3px;
+        border-bottom: solid 1px #BFBFBF;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
     .radio {
         display: inline-block;
         margin: 0 5px 0 0;
@@ -23,18 +39,16 @@
     }
 
     .select {
-        display: inline-block;
         position: relative;
+        display: inline-block;
+        overflow: hidden;
         margin: 0 5px 0 0;
-        padding: 0 0 0 15px;
+        max-width: 75%;
         color: #BFBFBF;
-        font: 10px OpenSansRegular, Helvetica, sans-serif;
-
-        &:before {
-            display: block;
-            content: '-';
-            position: absolute * * * 0;
-        }
+        vertical-align: middle;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font: 10px/12px OpenSansRegular, Helvetica, sans-serif;
     }
 
     .choice-input {

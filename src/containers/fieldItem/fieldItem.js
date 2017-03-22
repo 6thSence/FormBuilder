@@ -7,7 +7,6 @@ import { questionTypes } from '../../lib/questionTypes';
 import LineText from '../../components/lineText/lineText';
 import FileUpload from '../../components/fileUpload/fileUpload';
 import ListOfChoices from '../listOfChoices/listOfChoices';
-import Select from '../select/select';
 import ParagraphText from '../../components/paragraphText/paragraphText';
 
 import styles from './fieldItem.css';
@@ -19,27 +18,34 @@ export default SortableElement(({ question, dispatch }) => {
         switch (type) {
             case questionTypes.lineText:
                 return <LineText />;
+
             case questionTypes.radioButton:
                 return <ListOfChoices choices={question.choices}
                     questionId={question.id}
                     dispatch={dispatch}
                     type={questionTypes.radioButton}
                     />;
+
             case questionTypes.checkboxes:
                 return <ListOfChoices choices={question.choices}
                     questionId={question.id}
                     dispatch={dispatch}
                     type={questionTypes.checkboxes}
                     />;
+
             case questionTypes.select:
-                return <Select choices={question.choices}
+                return <ListOfChoices choices={question.choices}
                     questionId={question.id}
                     dispatch={dispatch}
+                    type={questionTypes.select}
                 />;
+
             case questionTypes.fileUploader:
                 return <FileUpload />;
+
             case questionTypes.paragraphText:
                 return <ParagraphText />;
+
             default:
                 return <LineText />;
         }

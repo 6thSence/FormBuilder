@@ -27,7 +27,7 @@ export default ({ choices, questionId, dispatch, type }) => {
         dispatch(addChoice(questionId))
     };
 
-    const setTypeOfChoice = () => {
+    const getLabelClassName = type => {
         switch(type) {
             case questionTypes.radioButton:
                 return styles.radio;
@@ -40,9 +40,18 @@ export default ({ choices, questionId, dispatch, type }) => {
         }
     };
 
+    const getListClassName = (type, styles) => {
+        switch(type) {
+            case questionTypes.select:
+                return styles.selectList;
+            default:
+                return styles.list;
+        }
+    };
+
     return(
         <div className={styles.wrap}>
-            <ul className={styles.list}>
+            <ul className={getListClassName(type, styles)}>
 
             {choices.map(choice =>
                 <li className={styles.item}
@@ -60,11 +69,11 @@ export default ({ choices, questionId, dispatch, type }) => {
                                    autoFocus
                             />
                             :
-                            <label className={setTypeOfChoice()}
+                            <label className={getLabelClassName(type)}
                                      value={choice.text}
                                      id={choice.id}>
 
-                                {choice.text}
+                                { choice.text ? choice.text : "Write choice" }
 
                             </label>
                     }

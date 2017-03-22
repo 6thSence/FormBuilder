@@ -1,9 +1,9 @@
 .wrap {
     position: relative;
     display: flex;
-    align-items: center;
     margin: 0 0 15px;
     min-height: 20px;
+    align-items: center;
 }
 
     .item {
@@ -12,11 +12,11 @@
     }
 
     .question {
-        box-sizing: border-box;
         display: flex;
-        align-items: center;
+        box-sizing: border-box;
         padding: 0 25px;
         width: 48%;
+        align-items: center;
         composes: item;
     }
 
@@ -91,7 +91,7 @@
 .drag {
     position: absolute 50% * * 0;
     background: inline('./assets/dragHandler.svg') center/contain no-repeat;
-    size: 12px 25px;
     cursor: pointer;
     transform: translateY(-50%);
+    size: 12px 25px;
 }

@@ -69,12 +69,10 @@ export default function formInfo(state = initialState, action) {
                         id,
                         choices: [
                             {
-                                id: uuidV1(),
-                                text: 'Write choice'
+                                id: uuidV1()
                             },
                             {
-                                id: uuidV1(),
-                                text: 'Write choice'
+                                id: uuidV1()
                             }
                         ]
                     },
@@ -111,7 +109,6 @@ export default function formInfo(state = initialState, action) {
                     item.choices.forEach(choice => {
                         if (choice.id === action.choiceId) {
                             choice.isEditing = action.isEditing;
-                            choice.text = choice.text || 'Write choice';
                         };
                     });
                 }
@@ -148,8 +145,6 @@ export default function formInfo(state = initialState, action) {
                 return item;
             }) ];
         case SET_FIELDS_LIST:
-            console.log('SET_FIELDS_LIST = ', SET_FIELDS_LIST);
-            console.log('action.newFieldsList = ', action.newFieldsList);
             return [ ...action.newFieldsList ];
         default:
             return state;
