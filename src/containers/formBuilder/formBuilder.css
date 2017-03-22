@@ -1,7 +1,7 @@
 .wrap {
     box-sizing: border-box;
     padding: 10px 50px;
-    min-height: calc(100vh - 55px);
+    min-height: 645px;
     border: solid 1px #E5E5E5;
     background: #fff;
 }

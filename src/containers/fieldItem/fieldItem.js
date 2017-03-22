@@ -4,7 +4,10 @@ import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../.
 import { questionTypes } from '../../lib/questionTypes';
 
 import LineText from '../../components/lineText/lineText';
+import FileUpload from '../../components/fileUpload/fileUpload';
 import ListOfChoices from '../listOfChoices/listOfChoices';
+import Select from '../select/select';
+import ParagraphText from '../../components/paragraphText/paragraphText';
 
 import styles from './fieldItem.css';
 
@@ -26,13 +29,16 @@ export default ({ question, dispatch }) => {
                     type={questionTypes.checkboxes}
                     />;
             case questionTypes.select:
-                return 'select';
+                return <Select choices={question.choices}
+                    questionId={question.id}
+                    dispatch={dispatch}
+                />;
             case questionTypes.fileUploader:
-                return 'fileUploader';
+                return <FileUpload />;
             case questionTypes.paragraphText:
-                return 'paragraphText';
+                return <ParagraphText />;
             default:
-                return 'nontype';
+                return <LineText />;
         }
     };
 

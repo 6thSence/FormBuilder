@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 import { changeChoiceText, toggleEditChoice, removeChoice, addChoice } from '../../actions/formInfo';
-import { questionTypes } from '../../lib/questionTypes';
 
-import styles from './listOfChoices.css';
+import styles from './select.css';
 
 export default ({ choices, questionId, dispatch, type }) => {
     const _onClickEdit = (event, questionId, choiceId) => {
@@ -27,19 +26,6 @@ export default ({ choices, questionId, dispatch, type }) => {
         dispatch(addChoice(questionId))
     };
 
-    const setTypeOfChoice = () => {
-        switch(type) {
-            case questionTypes.radioButton:
-                return styles.radio;
-            case questionTypes.checkboxes:
-                return styles.checkbox;
-            case questionTypes.select:
-                return styles.select;
-            default:
-                return styles.radio;
-        }
-    };
-
     return(
         <div className={styles.wrap}>
             <ul className={styles.list}>
@@ -60,7 +46,7 @@ export default ({ choices, questionId, dispatch, type }) => {
                                    autoFocus
                             />
                             :
-                            <label className={setTypeOfChoice()}
+                            <label className={styles.select}
                                      value={choice.text}
                                      id={choice.id}>
 

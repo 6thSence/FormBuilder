@@ -70,6 +70,10 @@ export default function formInfo(state = initialState, action) {
                             {
                                 id: uuidV1(),
                                 text: 'Write choice'
+                            },
+                            {
+                                id: uuidV1(),
+                                text: 'Write choice'
                             }
                         ]
                     },
