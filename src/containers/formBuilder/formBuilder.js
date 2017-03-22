@@ -29,6 +29,12 @@ const FormBuilder = React.createClass({
         }
     },
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            items: nextProps.questions,
+        });
+    },
+
     onSortEnd({ oldIndex, newIndex }) {
         const newFieldList = arrayMove(this.state.items, oldIndex, newIndex);
 
@@ -69,6 +75,7 @@ const FormBuilder = React.createClass({
                         items={this.state.items}
                         dispatch={this.props.dispatch}
                         onSortEnd={this.onSortEnd}
+                        useDragHandle={true}
                         />
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { SortableElement } from 'react-sortable-hoc';
+import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 
 import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../../actions/formInfo';
 import { questionTypes } from '../../lib/questionTypes';
@@ -11,6 +11,8 @@ import Select from '../select/select';
 import ParagraphText from '../../components/paragraphText/paragraphText';
 
 import styles from './fieldItem.css';
+
+const DragHandle = SortableHandle(() => <div className={styles.drag}></div>);
 
 export default SortableElement(({ question, dispatch }) => {
     const switchType = (type) => {
@@ -69,6 +71,8 @@ export default SortableElement(({ question, dispatch }) => {
 
     return (
         <li className={styles.wrap}>
+            <DragHandle />
+
             <div className={styles.question}>
                 { question.isEditing ?
                     <input type="text"

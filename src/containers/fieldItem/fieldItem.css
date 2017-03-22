@@ -1,5 +1,7 @@
 .wrap {
+    position: relative;
     display: flex;
+    align-items: center;
     margin: 0 0 15px;
     min-height: 20px;
 }
@@ -11,6 +13,8 @@
 
     .question {
         box-sizing: border-box;
+        display: flex;
+        align-items: center;
         padding: 0 25px;
         width: 48%;
         composes: item;
@@ -37,7 +41,7 @@
         opacity: 1;
         cursor: pointer;
         transition: opacity .3s;
-        size: 10px 100%;
+        size: 12px;
 
         &:hover {
             opacity: .4;
@@ -60,7 +64,7 @@
             background: inline('./assets/Checkmark.svg') center no-repeat,
                 inline('./assets/Rectangle.svg') center no-repeat;
             transition: opacity .3s;
-            size: 12px 100%;
+            size: 12px;
 
             &:hover {
                 opacity: .4;
@@ -75,10 +79,19 @@
     .remove-button {
         color: #FF8CA0;
         text-decoration: none;
-        font: 10px/25px OpenSansRegular, Helvetica, Arial, sans-serif;
+        font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
         transition: opacity .3s;
+        size: 12px;
 
         &:hover {
             opacity: .4;
         }
     }
+
+.drag {
+    position: absolute 50% * * 0;
+    background: inline('./assets/dragHandler.svg') center/contain no-repeat;
+    size: 12px 25px;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
