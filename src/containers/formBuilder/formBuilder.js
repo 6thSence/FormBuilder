@@ -26,18 +26,6 @@ const SortableList = SortableContainer(({ items, dispatch }) => {
 });
 
 const FormBuilder = React.createClass({
-    getInitialState() {
-        return {
-            items: this.props.questions
-        }
-    },
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            items: nextProps.questions
-        });
-    },
-
     shouldComponentUpdate(nextProps) {
         if (nextProps.isSaved && this.props.isSaved ) {
             this.props.dispatch(saveForm(false));
@@ -47,17 +35,13 @@ const FormBuilder = React.createClass({
     },
 
     onSortEnd({ oldIndex, newIndex }) {
-        const newFieldList = arrayMove(this.state.items, oldIndex, newIndex);
+        const sortableList = arrayMove(this.props.questions, oldIndex, newIndex);
 
-        this.setState({
-            items: newFieldList,
-        });
-
-        this.props.dispatch(setFieldsList(newFieldList));
+        this.props.dispatch(setFieldsList(sortableList));
     },
 
     checkWarnings() {
-        const questions = this.state.items;
+        const questions = this.props.questions;
         let isEmptyQuestion = false;
         let isEmptyChoice = false;
         let isUniqueChoice = false;
@@ -67,7 +51,7 @@ const FormBuilder = React.createClass({
             isEmptyQuestion = !question.text ? true : isEmptyQuestion;
 
             if (question.choices) {
-                question.choices.forEach(choice => isEmptyChoice = !choice.text);
+                question.choices.forEach(choice => isEmptyChoice = !choice.text ? true : isEmptyChoice);
 
                 isMoreThenOneChoice = question.choices.length < 2 ? true : isMoreThenOneChoice;
 
@@ -113,9 +97,7 @@ const FormBuilder = React.createClass({
         return warningsList;
     },
 
-    validation(event) {
-        event.preventDefault();
-
+    validation() {
         if (this.props.isSaved) {
             return true;
         }
@@ -128,8 +110,15 @@ const FormBuilder = React.createClass({
             : this.props.dispatch(setWarnings(warningsList));
     },
 
+    saveForm(event) {
+        event.preventDefault();
+
+        this.validation();
+    },
+
     render() {
-        const { description,
+        const { questions,
+            description,
             isSaved,
             warnings,
             dispatch } = this.props;
@@ -138,7 +127,7 @@ const FormBuilder = React.createClass({
             <div className={styles.wrap}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>San Francisco Driver Form</h2>
-                    <a className={styles.button} href="#" onClick={this.validation}>Save Form</a>
+                    <a className={styles.button} href="#" onClick={this.saveForm}>Save Form</a>
                 </div>
 
                 {isSaved && <Warning text="Form saved" isSaved />}
@@ -161,7 +150,7 @@ const FormBuilder = React.createClass({
                     </div>
 
                     <SortableList
-                        items={this.state.items}
+                        items={questions}
                         dispatch={dispatch}
                         onSortEnd={this.onSortEnd}
                         useDragHandle={true}
