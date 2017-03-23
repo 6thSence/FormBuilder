@@ -73,7 +73,10 @@ const FormBuilder = React.createClass({
 
                 question.choices.forEach((currentChoice , currentIndex) =>
                     question.choices.forEach((choice, index) => {
-                        if (choice.text === currentChoice.text && index != currentIndex) {
+                        if (choice.text
+                            && !!choice.text.length
+                            && choice.text === currentChoice.text
+                            && index != currentIndex) {
                             isUniqueChoice = true;
                         }
                     }));

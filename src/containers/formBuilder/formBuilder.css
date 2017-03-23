@@ -37,11 +37,13 @@
         }
 
     .description {
+        overflow: hidden;
         margin: 0 0 20px;
         padding: * 3px 20px;
         border-bottom: solid 1px #E5E5E5;
         color: #4F4F4F;
         text-align: left;
+        text-overflow: ellipsis;
         font: 10px openSansItalic, Helvetica, Arial, sans-serif;
     }
 

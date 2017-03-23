@@ -90,7 +90,9 @@ export default SortableElement(({ question, dispatch }) => {
                            onKeyPress={event => _onKeyPressEdit(event, question.id)}
                            autoFocus
                     />
-                    : question.text || "Write your question..."
+                    : <span className={styles.text}>
+                        {question.text || "Write your question..."}
+                        </span>
                 }
 
                 {question.isRequired && !question.isEditing ?

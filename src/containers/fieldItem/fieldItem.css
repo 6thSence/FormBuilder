@@ -7,6 +7,9 @@
 }
 
     .item {
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 0 5px 0 0;
         color: #4F4F4F;
         font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
     }
@@ -16,6 +19,7 @@
         box-sizing: border-box;
         padding: 0 25px;
         width: 48%;
+        text-overflow: ellipsis;
         align-items: center;
         composes: item;
     }
@@ -26,6 +30,13 @@
         border: none;
         color: #4F4F4F;
         font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+    }
+
+    .text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
+        padding: 0 5px 0 0;
     }
 
     .required-star {

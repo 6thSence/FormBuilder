@@ -1,8 +1,21 @@
 .list {
-    margin: 0 0 5px;
+    margin: 0 5px 5px 0;
     padding: 0;
     list-style: none;
 }
+
+    .item {
+        display: flex;
+        align-items: center;
+    }
+
+    .listElem {
+        display: flex;
+        overflow: hidden;
+        max-width: 80%;
+        text-overflow: ellipsis;
+        align-items: center;
+    }
 
 .selectList {
     width: 80%;
@@ -11,6 +24,7 @@
     composes: list;
 
     & .item {
+        box-sizing: border-box;
         padding: 3px;
         border-bottom: solid 1px #BFBFBF;
 
@@ -21,26 +35,25 @@
 }
 
     .radio {
-        display: inline-block;
         margin: 0 5px 0 0;
         padding: 0 0 0 15px;
-        background: inline('./assets/Oval.svg') left/contain no-repeat;
+        background: inline('./assets/Oval.svg') left/12px no-repeat;
         color: #BFBFBF;
         font: 10px OpenSansRegular, Helvetica, sans-serif;
+        composes: listElem;
     }
 
     .checkbox {
-        display: inline-block;
         margin: 0 5px 0 0;
         padding: 0 0 0 15px;
-        background: inline('./assets/Rectangle.svg') left/contain no-repeat;
+        background: inline('./assets/Rectangle.svg') left/12px no-repeat;
         color: #BFBFBF;
         font: 10px OpenSansRegular, Helvetica, sans-serif;
+        composes: listElem;
     }
 
     .select {
         position: relative;
-        display: inline-block;
         overflow: hidden;
         margin: 0 5px 0 0;
         max-width: 75%;
@@ -49,6 +62,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         font: 10px/12px OpenSansRegular, Helvetica, sans-serif;
+        composes: listElem;
     }
 
     .choice-input {
@@ -65,6 +79,7 @@
         vertical-align: middle;
         opacity: 1;
         transition: opacity .3s;
+        flex-shrink: 0;
         size: 12px;
 
         &:hover {
@@ -80,6 +95,7 @@
         vertical-align: middle;
         opacity: 1;
         transition: opacity .3s;
+        flex-shrink: 0;
         size: 11px;
 
         &:hover {
