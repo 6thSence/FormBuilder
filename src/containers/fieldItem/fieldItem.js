@@ -1,65 +1,68 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 
-import { removeFiled, setIsRequired, toggleEdit, changeQuestionText } from '../../actions/formInfo';
+import { removeFiled,
+    setIsRequired,
+    toggleEdit,
+    changeQuestionText } from '../../actions/formInfo';
 import { questionTypes } from '../../lib/questionTypes';
 
-import LineText from '../../components/lineText/lineText';
 import FileUpload from '../../components/fileUpload/fileUpload';
+import LineText from '../../components/lineText/lineText';
 import ListOfChoices from '../listOfChoices/listOfChoices';
 import ParagraphText from '../../components/paragraphText/paragraphText';
 
 import styles from './fieldItem.css';
 
-const DragHandle = SortableHandle(() => <div className={styles.drag}></div>);
+const DragHandle = SortableHandle(() => <div className={styles.drag} />);
+const switchType = (question, dispatch) => {
+    switch (question.type) {
+        case questionTypes.lineText:
+            return <LineText />;
+
+        case questionTypes.radioButton:
+            return <ListOfChoices
+                choices={question.choices}
+                questionId={question.id}
+                dispatch={dispatch}
+                type={questionTypes.radioButton}
+            />;
+
+        case questionTypes.checkboxes:
+            return <ListOfChoices
+                choices={question.choices}
+                questionId={question.id}
+                dispatch={dispatch}
+                type={questionTypes.checkboxes}
+            />;
+
+        case questionTypes.select:
+            return <ListOfChoices
+                choices={question.choices}
+                questionId={question.id}
+                dispatch={dispatch}
+                type={questionTypes.select}
+            />;
+
+        case questionTypes.fileUploader:
+            return <FileUpload />;
+
+        case questionTypes.paragraphText:
+            return <ParagraphText />;
+
+        default:
+            return <LineText />;
+    }
+};
 
 export default SortableElement(({ question, dispatch }) => {
-    const switchType = (type) => {
-        switch (type) {
-            case questionTypes.lineText:
-                return <LineText />;
-
-            case questionTypes.radioButton:
-                return <ListOfChoices choices={question.choices}
-                    questionId={question.id}
-                    dispatch={dispatch}
-                    type={questionTypes.radioButton}
-                    />;
-
-            case questionTypes.checkboxes:
-                return <ListOfChoices choices={question.choices}
-                    questionId={question.id}
-                    dispatch={dispatch}
-                    type={questionTypes.checkboxes}
-                    />;
-
-            case questionTypes.select:
-                return <ListOfChoices choices={question.choices}
-                    questionId={question.id}
-                    dispatch={dispatch}
-                    type={questionTypes.select}
-                />;
-
-            case questionTypes.fileUploader:
-                return <FileUpload />;
-
-            case questionTypes.paragraphText:
-                return <ParagraphText />;
-
-            default:
-                return <LineText />;
-        }
-    };
-
     const _onClickRemove = (event, id) => {
         event.preventDefault();
-
         dispatch(removeFiled(id));
     };
 
     const _onClickRequired = (event, isRequired, id) => {
         event.preventDefault();
-
         dispatch(setIsRequired(id, !isRequired));
     };
 
@@ -71,7 +74,6 @@ export default SortableElement(({ question, dispatch }) => {
 
     const _onClickEdite = (event, id, isEditing) => {
         event.preventDefault();
-
         dispatch(toggleEdit(id, isEditing));
     };
 
@@ -80,6 +82,7 @@ export default SortableElement(({ question, dispatch }) => {
             <DragHandle />
 
             <div className={styles.question}>
+
                 { question.isEditing ?
                     <input type="text"
                            value={question.text}
@@ -104,7 +107,7 @@ export default SortableElement(({ question, dispatch }) => {
             </div>
 
             <div className={styles.choices}>
-                {switchType(question.type)}
+                {switchType(question, dispatch)}
             </div>
 
             <div className={styles['required-inner']}>

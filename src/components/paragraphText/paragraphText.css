@@ -1,12 +1,12 @@
 .input {
+    box-sizing: border-box;
+    padding: 5px;
+    outline: none;
     border: solid 1px #CCC;
     border-radius: 4px;
     color: #999;
-    padding: 5px;
-    box-sizing: border-box;
-    size: 60% 100%;
     font: 9px Helvetica, Arial, sans-serif;
-    -webkit-user-select: none;
     resize: none;
-    outline: none;
+    size: 60% 100%;
+    -webkit-user-select: none;
 }

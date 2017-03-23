@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 
 import { setFieldsList } from '../../actions/formInfo';
 import { saveForm, setWarnings } from '../../actions/formStatus';
 import { warnings as warningsLib } from '../../lib/warnings';
+import { checkIsEmptyQuestion,
+    checkIsEmptyChoice,
+    checkIsUniqueChoice,
+    checkIsMoreThenOneChoice } from '../../utils/helpers';
 
 import FieldItem from '../fieldItem/fieldItem';
 import Warning from '../../components/warning/warning';
@@ -19,15 +23,16 @@ const SortableList = SortableContainer(({ items, dispatch }) => {
                     question={item}
                     key={`item-${index}`}
                     index={index}
-                    dispatch={dispatch}/>
-                )}
+                    dispatch={dispatch}
+                />
+            )}
         </ul>
     )
 });
 
 const FormBuilder = React.createClass({
     shouldComponentUpdate(nextProps) {
-        if (nextProps.isSaved && this.props.isSaved ) {
+        if (nextProps.isSaved && this.props.isSaved) {
             this.props.dispatch(saveForm(false));
         }
 
@@ -44,27 +49,14 @@ const FormBuilder = React.createClass({
         const questions = this.props.questions;
         let isEmptyQuestion = false;
         let isEmptyChoice = false;
-        let isUniqueChoice = false;
         let isMoreThenOneChoice = false;
+        let isUniqueChoice = false;
 
         questions.forEach(question => {
-            isEmptyQuestion = !question.text ? true : isEmptyQuestion;
-
-            if (question.choices) {
-                question.choices.forEach(choice => isEmptyChoice = !choice.text ? true : isEmptyChoice);
-
-                isMoreThenOneChoice = question.choices.length < 2 ? true : isMoreThenOneChoice;
-
-                question.choices.forEach((currentChoice , currentIndex) =>
-                    question.choices.forEach((choice, index) => {
-                        if (choice.text
-                            && !!choice.text.length
-                            && choice.text === currentChoice.text
-                            && index != currentIndex) {
-                            isUniqueChoice = true;
-                        }
-                    }));
-            }
+            isEmptyQuestion = checkIsEmptyQuestion(question, isEmptyQuestion);
+            isEmptyChoice = checkIsEmptyChoice(question, isEmptyChoice);
+            isUniqueChoice = checkIsUniqueChoice(question, isMoreThenOneChoice);
+            isMoreThenOneChoice = checkIsMoreThenOneChoice(question, isMoreThenOneChoice);
         });
 
         return {
@@ -126,13 +118,19 @@ const FormBuilder = React.createClass({
         return (
             <div className={styles.wrap}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>San Francisco Driver Form</h2>
-                    <a className={styles.button} href="#" onClick={this.saveForm}>Save Form</a>
+                    <h2 className={styles.title}>
+                        San Francisco Driver Form
+                    </h2>
+
+                    <a className={styles.button} href="#" onClick={this.saveForm}>
+                        Save Form
+                    </a>
                 </div>
 
                 {isSaved && <Warning text="Form saved" isSaved />}
 
-                {warnings.map((warning, index) => <Warning text={warning.text} key={`warning-${index}`} />)}
+                {warnings.map((warning, index) =>
+                    <Warning text={warning.text} key={`warning-${index}`} />)}
 
                 <p className={styles.description}>
                         <span className={styles['description-title']}>
@@ -161,7 +159,7 @@ const FormBuilder = React.createClass({
     }
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         questions: state.formInfo || [],
         description: state.description,

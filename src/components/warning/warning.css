@@ -1,14 +1,14 @@
 .error {
     margin: 0 0 20px;
     padding: 20px 25px;
-    border-radius: 4px;
     border: solid 1px #EBCCCC;
+    border-radius: 4px;
     color: #A94442 #F2DEDE;
     font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
 }
 
 .success {
-    composes: error;
     border-color: #D4EBCC;
     color: #83A942 #E1F2DE;
+    composes: error;
 }

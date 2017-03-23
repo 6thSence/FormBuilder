@@ -18,33 +18,37 @@ const Home = React.createClass({
     render() {
         return (
             <div className={styles.wrap}>
-                <p className={styles.description}>Select fields will be added to form.</p>
-                <h2 className={styles.title}>Add Custom Field</h2>
+                <p className={styles.description}>
+                    Select fields will be added to form.
+                </p>
+                <h2 className={styles.title}>
+                    Add Custom Field
+                </h2>
 
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <Button text="Single-line text"
-                                onClick={event => this.onClickAddField(event, questionTypes.lineText)} />
+                            onClick={event => this.onClickAddField(event, questionTypes.lineText)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Radio button"
-                                onClick={event => this.onClickAddField(event, questionTypes.radioButton)} />
+                            onClick={event => this.onClickAddField(event, questionTypes.radioButton)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Checkboxes"
-                                onClick={event => this.onClickAddField(event, questionTypes.checkboxes)} />
+                            onClick={event => this.onClickAddField(event, questionTypes.checkboxes)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Select"
-                                onClick={event => this.onClickAddField(event, questionTypes.select)} />
+                            onClick={event => this.onClickAddField(event, questionTypes.select)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="File upload"
-                                onClick={event => this.onClickAddField(event, questionTypes.fileUploader)} />
+                            onClick={event => this.onClickAddField(event, questionTypes.fileUploader)} />
                     </li>
                     <li className={styles.item}>
                         <Button text="Paragraph text"
-                                onClick={event => this.onClickAddField(event, questionTypes.paragraphText)} />
+                            onClick={event => this.onClickAddField(event, questionTypes.paragraphText)} />
                     </li>
                 </ul>
             </div>
@@ -52,4 +56,4 @@ const Home = React.createClass({
     }
 });
 
-export default connect((state) => state)(Home);
+export default connect(state => state)(Home);

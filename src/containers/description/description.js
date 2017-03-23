@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeDescription } from '../../actions/description';
@@ -17,6 +17,7 @@ const Description = React.createClass({
             <div className={styles.wrap}>
                 <p className={styles.description}>Optional form description.</p>
                 <h2 className={styles.title}>Form Description</h2>
+
                 <textarea className={styles.textarea}
                     placeholder={description.text || 'Write your description...'}
                     onChange={this.onChangeDescription}
@@ -27,10 +28,8 @@ const Description = React.createClass({
 });
 
 
-const mapStateToProps = (state) => {
-    return {
-        description: state.description || '',
-    };
-};
+const mapStateToProps = state => ({
+        description: state.description || ''
+    });
 
 export default connect(mapStateToProps)(Description);

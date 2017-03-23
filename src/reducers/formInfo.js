@@ -77,8 +77,10 @@ export default function formInfo(state = initialState, action) {
                         ]
                     },
                 ];
+
         case REMOVE_FIELD:
             return [ ...state.filter(item => item.id !== action.id) ];
+
         case SET_IS_REQUIRED:
             return [ ...state.map(item => {
                 if (item.id === action.id) {
@@ -87,6 +89,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case EDIT_QUESTION:
             return [ ...state.map(item => {
                 if (item.id === action.id) {
@@ -95,6 +98,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case CHANGE_QUESTION_TEXT:
             return [ ...state.map(item => {
                 if (item.id === action.id) {
@@ -103,6 +107,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case TOGGLE_EDDIT_CHOICE:
             return [ ...state.map(item => {
                 if (item.id === action.questionId) {
@@ -115,6 +120,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case CHANGE_CHOICE_TEXT:
             return [ ...state.map(item => {
                 if (item.id === action.questionId) {
@@ -125,6 +131,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case REMOVE_CHOICE:
             return [ ...state.map(item => {
                 if (item.id === action.questionId) {
@@ -133,6 +140,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case ADD_CHOICE:
             return [ ...state.map(item => {
                 if (item.id === action.questionId) {
@@ -144,6 +152,7 @@ export default function formInfo(state = initialState, action) {
 
                 return item;
             }) ];
+
         case SET_FIELDS_LIST:
             return [ ...action.newFieldsList ];
         default:

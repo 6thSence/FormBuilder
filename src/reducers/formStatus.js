@@ -14,6 +14,7 @@ export default function formStatus(state = initialState, action) {
                 isSaved: action.isSaved,
                 warnings: action.isSaved ? [] : state.warnings
             };
+
         case SET_WARNINGS:
             return {
                 ...state,

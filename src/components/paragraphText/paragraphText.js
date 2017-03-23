@@ -4,6 +4,10 @@ import styles from './paragraphText.css';
 
 export default () => {
     return (
-        <textarea placeholder="Paragraph text" className={styles.input} readOnly />
+        <textarea
+            placeholder="Paragraph text"
+            className={styles.input}
+            readOnly
+        />
     )
 };

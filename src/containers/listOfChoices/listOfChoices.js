@@ -1,52 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { changeChoiceText, toggleEditChoice, removeChoice, addChoice } from '../../actions/formInfo';
+import { changeChoiceText,
+    toggleEditChoice,
+    removeChoice,
+    addChoice } from '../../actions/formInfo';
 import { questionTypes } from '../../lib/questionTypes';
 
 import styles from './listOfChoices.css';
 
+const getLabelClassName = type => {
+    switch(type) {
+        case questionTypes.radioButton:
+            return styles.radio;
+        case questionTypes.checkboxes:
+            return styles.checkbox;
+        case questionTypes.select:
+            return styles.select;
+        default:
+            return styles.radio;
+    }
+};
+const getListClassName = type => {
+    switch(type) {
+        case questionTypes.select:
+            return styles.selectList;
+        default:
+            return styles.list;
+    }
+};
+
 export default ({ choices, questionId, dispatch, type }) => {
     const _onClickEdit = (event, questionId, choiceId) => {
         event.preventDefault();
-
         dispatch(toggleEditChoice(questionId, choiceId, true));
     };
+
     const _onClickRemove = (event, questionId, choiceId) => {
         event.preventDefault();
-
         dispatch(removeChoice(questionId, choiceId));
     };
+
     const _onKeyPressEdit = (event, questionId, choiceId, isEditing) => {
         if (event.key == 'Enter') {
             dispatch(toggleEditChoice(questionId, choiceId, isEditing));
         }
     };
+
     const _onClickAdd = (event, questionId) => {
         event.preventDefault();
-
         dispatch(addChoice(questionId))
-    };
-
-    const getLabelClassName = type => {
-        switch(type) {
-            case questionTypes.radioButton:
-                return styles.radio;
-            case questionTypes.checkboxes:
-                return styles.checkbox;
-            case questionTypes.select:
-                return styles.select;
-            default:
-                return styles.radio;
-        }
-    };
-
-    const getListClassName = (type, styles) => {
-        switch(type) {
-            case questionTypes.select:
-                return styles.selectList;
-            default:
-                return styles.list;
-        }
     };
 
     return(
@@ -99,7 +101,6 @@ export default ({ choices, questionId, dispatch, type }) => {
             <a href="#"
                className={styles.add}
                onClick={event => _onClickAdd(event, questionId)}>+&nbsp;Add Choice</a>
-
         </div>
     )
 };
