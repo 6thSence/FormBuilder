@@ -4,7 +4,7 @@ import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 
 import { setFieldsList } from '../../actions/formInfo';
 import { saveForm, setWarnings } from '../../actions/formStatus';
-import { warnings } from '../../lib/warnings';
+import { warnings as warningsLib } from '../../lib/warnings';
 
 import FieldItem from '../fieldItem/fieldItem';
 import Warning from '../../components/warning/warning';
@@ -56,6 +56,60 @@ const FormBuilder = React.createClass({
         this.props.dispatch(setFieldsList(newFieldList));
     },
 
+    checkWarnings() {
+        const questions = this.state.items;
+        let isEmptyQuestion = false;
+        let isEmptyChoice = false;
+        let isUniqueChoice = false;
+        let isMoreThenOneChoice = false;
+
+        questions.forEach(question => {
+            isEmptyQuestion = !question.text ? true : isEmptyQuestion;
+
+            if (question.choices) {
+                question.choices.forEach(choice => isEmptyChoice = !choice.text);
+
+                isMoreThenOneChoice = question.choices.length < 2 ? true : isMoreThenOneChoice;
+
+                question.choices.forEach((currentChoice , currentIndex) =>
+                    question.choices.forEach((choice, index) => {
+                        if (choice.text === currentChoice.text && index != currentIndex) {
+                            isUniqueChoice = true;
+                        }
+                    }));
+            }
+        });
+
+        return {
+            isEmptyQuestion,
+            isEmptyChoice,
+            isUniqueChoice,
+            isMoreThenOneChoice
+        };
+    },
+
+    createWarningsList(warnings) {
+        const warningsList = [];
+
+        warnings.isEmptyQuestion && warningsList.push({
+            text: warningsLib.emptyQuestion
+        });
+
+        warnings.isEmptyChoice && warningsList.push({
+            text: warningsLib.emptyChoice
+        });
+
+        warnings.isMoreThenOneChoice && warningsList.push({
+            text: warningsLib.moreThenOneChoice
+        });
+
+        warnings.isUniqueChoice && warningsList.push({
+            text: warningsLib.uniqueChoice
+        });
+
+        return warningsList;
+    },
+
     validation(event) {
         event.preventDefault();
 
@@ -63,17 +117,12 @@ const FormBuilder = React.createClass({
             return true;
         }
 
-        const questions = this.state.items;
-        const currentWarnings = [];
+        const warnings = this.checkWarnings();
+        const warningsList = this.createWarningsList(warnings);
 
-        questions.forEach(question => !question.text ? currentWarnings.push({
-            text: warnings.emptyQuestion,
-            id: currentWarnings.length
-        }) : null);
-
-        currentWarnings.length === 0 ?
+        warningsList.length === 0 ?
             this.props.dispatch(saveForm(true))
-            : this.props.dispatch(setWarnings(currentWarnings));
+            : this.props.dispatch(setWarnings(warningsList));
     },
 
     render() {
@@ -91,7 +140,7 @@ const FormBuilder = React.createClass({
 
                 {isSaved && <Warning text="Form saved" isSaved />}
 
-                {warnings.map(warning => <Warning text={warning.text} key={`warning-${warning.id}`} />)}
+                {warnings.map((warning, index) => <Warning text={warning.text} key={`warning-${index}`} />)}
 
                 <p className={styles.description}>
                         <span className={styles['description-title']}>
