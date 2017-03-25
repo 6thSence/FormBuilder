@@ -184,9 +184,11 @@ const FormBuilder = React.createClass({
 
                 <CustomFields />
 
-                <a className={styles.button} href="#" onClick={this.saveForm}>
-                    Save Form
-                </a>
+                <div className={styles['button-wrap']}>
+                    <a className={styles.button} href="#" onClick={this.saveForm}>
+                        Save Form
+                    </a>
+                </div>
             </div>
         )
     }
