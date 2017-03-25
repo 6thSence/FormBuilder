@@ -142,7 +142,10 @@ const FormBuilder = React.createClass({
                 {warnings.map((warning, index) =>
                     <Warning text={warning.text} key={`warning-${index}`} />)}
 
-                <p className={styles.description}>
+                <p
+                    className={styles.description}
+                    onClick={event => this._onClickDescEdit(event, !description.isEditing)}
+                >
                     <span className={styles['description-title']}>
                         Description:&nbsp;
                     </span>
@@ -151,7 +154,7 @@ const FormBuilder = React.createClass({
                         <input type="text"
                                value={description.text}
                                placeholder="Write your question..."
-                               className={styles['question-input']}
+                               className={styles['description-input']}
                                onChange={event => dispatch(changeDescription(event.target.value))}
                                onBlur={() => dispatch(toggleDescriptionEdit(!description.isEditing))}
                                onKeyPress={event => this._onKeyPressDescEdit(event)}
@@ -165,7 +168,8 @@ const FormBuilder = React.createClass({
 
                     {!description.isEditing ?
                         <EditButton
-                            onClick={event => this._onClickDescEdit(event, !description.isEditing)} />
+                            onClick={event => this._onClickDescEdit(event, !description.isEditing)}
+                        />
                         : null}
                 </p>
 

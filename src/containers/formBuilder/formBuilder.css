@@ -55,6 +55,15 @@
             text-transform: uppercase;
         }
 
+        .description-input {
+            display: inline-block;
+            width: 90%;
+            outline: none;
+            border: none;
+            color: #4F4F4F;
+            font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+        }
+
     .list {
         margin: 0;
         padding: 0;
