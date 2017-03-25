@@ -49,33 +49,28 @@
         composes: item;
     }
 
-    .required-inner {
+    .required {
         margin: 0 60px 0 0;
         composes: item;
-    }
+        padding: 0 0 0 20px;
+        background: inline('./assets/Checkmark.svg') 1px 50%/10px no-repeat,
+            inline('./assets/Rectangle.svg') left center/12px no-repeat;
+        transition: opacity .3s;
 
-        .required {
-            display: inline-block;
-            vertical-align: middle;
-            padding: 0 10px 0 0;
-            background: inline('./assets/Checkmark.svg') center no-repeat,
-                inline('./assets/Rectangle.svg') center no-repeat;
-            transition: opacity .3s;
-            size: 12px;
-
-            &:hover {
-                opacity: .4;
+        &:hover {
+            opacity: .4;
             }
         }
 
         .not-required {
-            background: inline('./assets/Rectangle.svg') center no-repeat;
+            background: inline('./assets/Rectangle.svg') left/12px no-repeat;
             composes: required;
         }
 
         .required-text {
             text-transform: uppercase;
-            font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
+            font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+            cursor: pointer;
         }
 
     .remove-button {

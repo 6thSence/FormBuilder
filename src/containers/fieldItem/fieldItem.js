@@ -112,11 +112,8 @@ export default SortableElement(({ question, dispatch }) => {
                 {switchType(question, dispatch)}
             </div>
 
-            <div className={styles['required-inner']}>
-                <a className={question.isRequired ? styles.required : styles['not-required']}
-                   href="#"
-                   onClick={event => _onClickRequired(event, question.isRequired, question.id)}
-                />
+            <div className={question.isRequired ? styles.required : styles['not-required']}
+                 onClick={event => _onClickRequired(event, question.isRequired, question.id)}>
                 <span className={styles['required-text']}>
                     Required
                 </span>
