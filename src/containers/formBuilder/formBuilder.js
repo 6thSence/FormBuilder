@@ -139,9 +139,6 @@ const FormBuilder = React.createClass({
 
                 {isSaved && <Warning text="Form saved" isSaved />}
 
-                {warnings.map((warning, index) =>
-                    <Warning text={warning.text} key={`warning-${index}`} />)}
-
                 <p
                     className={styles.description}
                     onClick={event => this._onClickDescEdit(event, !description.isEditing)}
@@ -161,7 +158,7 @@ const FormBuilder = React.createClass({
                                autoFocus
                         />
                         :
-                        <span className={styles.text}>
+                        <span className={styles['description-text']}>
                             {description.text || 'You need to add description...'}
                         </span>
                     }
@@ -183,6 +180,9 @@ const FormBuilder = React.createClass({
                 </div>
 
                 <CustomFields />
+
+                {warnings.map((warning, index) =>
+                    <Warning text={warning.text} key={`warning-${index}`} />)}
 
                 <div className={styles['button-wrap']}>
                     <a className={styles.button} href="#" onClick={this.saveForm}>

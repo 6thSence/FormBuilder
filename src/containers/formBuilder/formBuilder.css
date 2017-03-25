@@ -15,8 +15,7 @@
     }
 
         .title {
-            color: #4F4F4F;
-            font: 15px OpenSansBold, Helvetica, Arial, sans-serif;
+            font: 16px OpenSansBold, Helvetica, Arial, sans-serif;
         }
 
     .description {
@@ -24,10 +23,10 @@
         margin: 0 0 20px;
         padding: * 3px 20px;
         border-bottom: solid 1px #E5E5E5;
-        color: #4F4F4F;
+        color: #000;
         text-align: left;
         text-overflow: ellipsis;
-        font: 10px openSansItalic, Helvetica, Arial, sans-serif;
+        font: 14px openSansItalic, Helvetica, Arial, sans-serif;
         transition: background .3s;
 
         & .text:hover {
@@ -41,15 +40,17 @@
         }
 
         .description-input {
+            margin: 0;
+            padding: 0;
             display: inline-block;
-            width: 90%;
+            width: 80%;
             outline: none;
             border: none;
-            color: #4F4F4F;
-            font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+            font: 14px openSansItalic, Helvetica, Arial, sans-serif;
+            color: #000;
         }
 
-    .list {
+.list {
         margin: 0 0 20px;
         padding: 0;
         border-bottom: solid 1px #E5E5E5;
@@ -82,9 +83,9 @@
             padding: * 35px;
             border: solid 1px;
             border-radius: 4px;
-            color: #7D88D4;
+            color: #4A58B7;
             text-decoration: none;
-            font: 10px/27px OpenSansRegular, Helvetica, Arial, sans-serif;
+            font: 14px/32px OpenSansRegular, Helvetica, Arial, sans-serif;
             transition: color .3s, border-color .3s;
 
             &:hover {

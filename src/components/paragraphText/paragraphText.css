@@ -1,11 +1,11 @@
 .input {
     box-sizing: border-box;
-    padding: 5px;
+    padding: 5px 8px;
     outline: none;
     border: solid 1px #CCC;
     border-radius: 4px;
     color: #999;
-    font: 9px Helvetica, Arial, sans-serif;
+    font: 14px Helvetica, Arial, sans-serif;
     resize: none;
     size: 60% 100%;
     -webkit-user-select: none;

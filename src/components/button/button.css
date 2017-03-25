@@ -1,16 +1,16 @@
 .link {
     display: inline-block;
     width: 100%;
-    padding: * 35px;
+    padding: * 15px;
     border: solid 1px #F2F2F2;
     border-radius: 4px;
     color: #7F7F7F;
     text-decoration: none;
-    font: 10px/27px OpenSansRegular, Helvetica, Arial, sans-serif;
+    font: 14px/32px OpenSansRegular, Helvetica, Arial, sans-serif;
     transition: color .3s, border-color .3s;
 
     &:hover {
-        color: #7D88D4;
-        border-color: #7D88D4;
+        color: #4A58B7;
+        border-color: #4A58B7;
     }
 }

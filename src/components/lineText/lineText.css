@@ -2,9 +2,9 @@
     border: solid 1px #CCC;
     border-radius: 4px;
     color: #999;
-    padding: 5px;
+    padding: 5px 8px;
     box-sizing: border-box;
     size: 60% 100%;
-    font: 9px Helvetica, Arial, sans-serif;
+    font: 12px Helvetica, Arial, sans-serif;
     -webkit-user-select: none;
 }

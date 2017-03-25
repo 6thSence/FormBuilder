@@ -18,11 +18,11 @@
     }
 
     .question {
-        min-height: 25px;
         position: relative;
         display: flex;
         box-sizing: border-box;
         padding: 0 25px;
+        min-height: 25px;
         width: 48%;
         text-overflow: ellipsis;
         align-items: center;
@@ -30,11 +30,12 @@
     }
 
     .question-input {
+        margin: 0;
+        padding: 0;
         width: 100%;
         outline: none;
         border: none;
-        color: #4F4F4F;
-        font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+        font: 14px OpenSansRegular, Helvetica, Arial, sans-serif;
     }
 
     .text {
@@ -42,6 +43,7 @@
         padding: 0 5px 0 0;
         max-width: 80%;
         text-overflow: ellipsis;
+        font: 14px OpenSansRegular, Helvetica, Arial, sans-serif;
         transition: background .3s;
 
         &:hover {
@@ -55,18 +57,18 @@
 
     .choices {
         box-sizing: border-box;
+        min-width: 150px;
         width: 26%;
         composes: item;
-        min-width: 150px;
     }
 
     .required {
-        flex-shrink: 0;
-        composes: item;
         padding: 0 0 0 20px;
         background: inline('./assets/Checkmark.svg') 1px 50%/10px no-repeat,
             inline('./assets/Rectangle.svg') left center/12px no-repeat;
         transition: opacity .3s;
+        flex-shrink: 0;
+        composes: item;
 
         &:hover {
             opacity: .4;
@@ -80,7 +82,7 @@
 
         .required-text {
             text-transform: uppercase;
-            font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
+            font: 14px OpenSansRegular, Helvetica, Arial, sans-serif;
             cursor: pointer;
         }
 
@@ -114,8 +116,8 @@
     }
 
     .question {
-        flex: 0 0 100%;
         margin: 0 0 20px;
+        flex: 0 0 100%;
     }
 
     .remove {

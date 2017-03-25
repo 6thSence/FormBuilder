@@ -5,8 +5,8 @@
 }
 
     .item {
-        margin: 0 0 3px;
         display: flex;
+        margin: 0 0 3px;
         align-items: center;
     }
 
@@ -37,25 +37,37 @@
     & .choice-input {
         width: 90%;
     }
+
+    & .add {
+        padding: * * 3px;
+    }
 }
 
 .radioButtonList {
     composes: list;
 
-    & .add,
     & .choice-input {
         padding: * * * 15px;
         background: inline('./assets/Oval.svg') left/12px no-repeat;
+    }
+
+    & .add {
+        padding: * * * 15px;
+        background: inline('./assets/OvalAdd.svg') left/12px no-repeat;
     }
 }
 
 .checkboxesList {
     composes: list;
 
-    & .add,
     & .choice-input {
         padding: * * * 15px;
         background: inline('./assets/Rectangle.svg') left/12px no-repeat;
+    }
+
+    & .add {
+        padding: * * * 15px;
+        background: inline('./assets/RectangleAdd.svg') left/12px no-repeat;
     }
 }
 
@@ -63,8 +75,7 @@
         margin: 0 5px 0 0;
         padding: 0 0 0 15px;
         background: inline('./assets/Oval.svg') left/12px no-repeat;
-        color: #BFBFBF;
-        font: 10px OpenSansRegular, Helvetica, sans-serif;
+        font: 14px OpenSansRegular, Helvetica, sans-serif;
         composes: listElem;
     }
 
@@ -72,8 +83,7 @@
         margin: 0 5px 0 0;
         padding: 0 0 0 15px;
         background: inline('./assets/Rectangle.svg') left/12px no-repeat;
-        color: #BFBFBF;
-        font: 10px OpenSansRegular, Helvetica, sans-serif;
+        font: 14px OpenSansRegular, Helvetica, sans-serif;
         composes: listElem;
     }
 
@@ -82,20 +92,23 @@
         overflow: hidden;
         margin: 0 5px 0 0;
         max-width: 75%;
-        color: #BFBFBF;
         vertical-align: middle;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font: 10px/12px OpenSansRegular, Helvetica, sans-serif;
+        font: 14px OpenSansRegular, Helvetica, sans-serif;
         composes: listElem;
     }
 
     .choice-input {
+        margin: 0;
+        padding: 0;
         outline: none;
         border: 0;
+        font: 14px OpenSansRegular, Helvetica, sans-serif;
     }
 
     .choice-text {
+        font: 14px OpenSansRegular, Helvetica, sans-serif;
         transition: background .3s;
 
         &:hover {
@@ -140,7 +153,12 @@
     .add {
         display: block;
         padding: 0 5px;
-        color: #BEC4EA;
+        color: #4A58B7;
         text-decoration: none;
-        font: 10px OpenSansRegular, Helvetica, Arial, Sans-serif;
+        font: 14px OpenSansRegular, Helvetica, Arial, Sans-serif;
+        transition: opacity .3s;
+
+        &:hover {
+            opacity: .4;
+        }
     }

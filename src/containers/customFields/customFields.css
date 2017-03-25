@@ -1,8 +1,8 @@
 .title {
     margin: 0 0 15px;
-    color: #4F4F4F;
+    color: #4A58B7;
     text-align: left;
-    font: 20px OpenSansRegular, Helvetica, Arial, sans-serif;
+    font: 18px OpenSansBold, Helvetica, Arial, sans-serif;
 }
 
 .list {
@@ -22,7 +22,7 @@
     .item {
         display: flex;
         margin: * * 18px;
-        min-width: 140px;
+        min-width: 120px;
     }
 
 @media screen and (max-width: 920px) {

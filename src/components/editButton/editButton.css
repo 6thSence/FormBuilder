@@ -1,13 +1,13 @@
 .edit {
     display: inline-block;
     padding: 0 0 0 10px;
-    background: inline('./assets/edit.svg') right no-repeat;
+    background: inline('./assets/edit.svg') right/contain no-repeat;
     background-clip: content-box;
     vertical-align: middle;
     opacity: 1;
     cursor: pointer;
     transition: opacity .3s;
-    size: 12px;
+    size: 14px;
 
     &:hover {
          opacity: .4;
