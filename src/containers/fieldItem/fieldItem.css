@@ -43,22 +43,6 @@
         color: #FF0000;
     }
 
-    .edit-button {
-        display: inline-block;
-        padding: 0 0 0 10px;
-        background: inline('./assets/edit.svg') right no-repeat;
-        background-clip: content-box;
-        vertical-align: middle;
-        opacity: 1;
-        cursor: pointer;
-        transition: opacity .3s;
-        size: 12px;
-
-        &:hover {
-            opacity: .4;
-        }
-    }
-
     .choices {
         box-sizing: border-box;
         width: 26%;
@@ -71,7 +55,9 @@
     }
 
         .required {
-            display: block;
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 10px 0 0;
             background: inline('./assets/Checkmark.svg') center no-repeat,
                 inline('./assets/Rectangle.svg') center no-repeat;
             transition: opacity .3s;
@@ -85,6 +71,11 @@
         .not-required {
             background: inline('./assets/Rectangle.svg') center no-repeat;
             composes: required;
+        }
+
+        .required-text {
+            text-transform: uppercase;
+            font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
         }
 
     .remove-button {

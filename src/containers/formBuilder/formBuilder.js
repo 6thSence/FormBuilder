@@ -4,14 +4,17 @@ import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 
 import { setFieldsList } from '../../actions/formInfo';
 import { saveForm, setWarnings } from '../../actions/formStatus';
+import { changeDescription, toggleDescriptionEdit } from '../../actions/description';
 import { warnings as warningsLib } from '../../lib/warnings';
 import { checkIsEmptyQuestion,
     checkIsEmptyChoice,
     checkIsUniqueChoice,
     checkIsMoreThenOneChoice } from '../../utils/helpers';
 
+import CustomFields from '../customFields/customFields';
 import FieldItem from '../fieldItem/fieldItem';
 import Warning from '../../components/warning/warning';
+import EditButton from '../../components/editButton/editButton';
 
 import styles from './formBuilder.css';
 
@@ -108,6 +111,17 @@ const FormBuilder = React.createClass({
         this.validation();
     },
 
+    _onKeyPressDescEdit(event) {
+        if (event.key == 'Enter') {
+            this.props.dispatch(toggleDescriptionEdit(false));
+        }
+    },
+
+    _onClickDescEdit(event) {
+        event.preventDefault();
+        this.props.dispatch(toggleDescriptionEdit(true));
+    },
+
     render() {
         const { questions,
             description,
@@ -121,10 +135,6 @@ const FormBuilder = React.createClass({
                     <h2 className={styles.title}>
                         San Francisco Driver Form
                     </h2>
-
-                    <a className={styles.button} href="#" onClick={this.saveForm}>
-                        Save Form
-                    </a>
                 </div>
 
                 {isSaved && <Warning text="Form saved" isSaved />}
@@ -133,20 +143,33 @@ const FormBuilder = React.createClass({
                     <Warning text={warning.text} key={`warning-${index}`} />)}
 
                 <p className={styles.description}>
-                        <span className={styles['description-title']}>
-                            Description:&nbsp;
-                        </span>
+                    <span className={styles['description-title']}>
+                        Description:&nbsp;
+                    </span>
 
-                    {description.text || 'You need to add description...'}
+                    {description.isEditing ?
+                        <input type="text"
+                               value={description.text}
+                               placeholder="Write your question..."
+                               className={styles['question-input']}
+                               onChange={event => dispatch(changeDescription(event.target.value))}
+                               onBlur={() => dispatch(toggleDescriptionEdit(!description.isEditing))}
+                               onKeyPress={event => this._onKeyPressDescEdit(event)}
+                               autoFocus
+                        />
+                        :
+                        <span className={styles.text}>
+                            {description.text || 'You need to add description...'}
+                        </span>
+                    }
+
+                    {!description.isEditing ?
+                        <EditButton
+                            onClick={event => this._onClickDescEdit(event, !description.isEditing)} />
+                        : null}
                 </p>
 
                 <div className={styles.list}>
-                    <div className={styles.titles}>
-                        <div className={styles.question}>Question Title</div>
-                        <div className={styles.choices}>Choices</div>
-                        <div className={styles.required}>Required?</div>
-                    </div>
-
                     <SortableList
                         items={questions}
                         dispatch={dispatch}
@@ -154,6 +177,12 @@ const FormBuilder = React.createClass({
                         useDragHandle={true}
                         />
                 </div>
+
+                <CustomFields />
+
+                <a className={styles.button} href="#" onClick={this.saveForm}>
+                    Save Form
+                </a>
             </div>
         )
     }

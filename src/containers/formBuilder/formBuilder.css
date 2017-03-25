@@ -7,7 +7,6 @@
 }
 
     .header {
-        position: relative;
         box-sizing: border-box;
         margin: 0 0 20px;
         padding: 0 120px 0 0;
@@ -20,7 +19,6 @@
         }
 
         .button {
-            position: absolute 0 0 * *;
             display: inline-block;
             padding: * 35px;
             border: solid 1px;
@@ -57,33 +55,6 @@
         padding: 0;
         list-style: none;
     }
-
-        .titles {
-            display: flex;
-        }
-
-        .fields-title {
-            margin: 0 0 10px;
-            color: #4F4F4F;
-            text-transform: uppercase;
-            font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
-        }
-
-        .question {
-            box-sizing: border-box;
-            padding: 0 0 0 25px;
-            width: 48%;
-            composes: fields-title;
-        }
-
-        .choices {
-            width: 26%;
-            composes: fields-title;
-        }
-
-        .required {
-            composes: fields-title;
-        }
 
     .fields-list {
         margin: 0;

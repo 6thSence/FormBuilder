@@ -11,6 +11,7 @@ import FileUpload from '../../components/fileUpload/fileUpload';
 import LineText from '../../components/lineText/lineText';
 import ListOfChoices from '../listOfChoices/listOfChoices';
 import ParagraphText from '../../components/paragraphText/paragraphText';
+import EditButton from '../../components/editButton/editButton';
 
 import styles from './fieldItem.css';
 
@@ -72,9 +73,9 @@ export default SortableElement(({ question, dispatch }) => {
         }
     };
 
-    const _onClickEdite = (event, id, isEditing) => {
+    const _onClickEdite = (event, id) => {
         event.preventDefault();
-        dispatch(toggleEdit(id, isEditing));
+        dispatch(toggleEdit(id, true));
     };
 
     return (
@@ -102,8 +103,9 @@ export default SortableElement(({ question, dispatch }) => {
                     <super className={styles['required-star']}>&nbsp;*</super> : null}
 
                 {!question.isEditing ?
-                    <a className={styles['edit-button']}
-                        onClick={(event) => _onClickEdite(event, question.id, !question.isEditing)}/> : null}
+                    <EditButton
+                        onClick={event => _onClickEdite(event, question.id)} />
+                    : null}
             </div>
 
             <div className={styles.choices}>
@@ -115,6 +117,9 @@ export default SortableElement(({ question, dispatch }) => {
                    href="#"
                    onClick={event => _onClickRequired(event, question.isRequired, question.id)}
                 />
+                <span className={styles['required-text']}>
+                    Required
+                </span>
             </div>
 
             <a href="#"

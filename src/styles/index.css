@@ -6,7 +6,6 @@ body, html {
 body {
     position: relative;
     box-sizing: border-box;
-    padding:  55px 50px 0 450px;
-    min-width: 1280px;
+    padding: 55px 50px *;
     background: #FAFAFA;
 }

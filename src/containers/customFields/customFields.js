@@ -18,9 +18,6 @@ const Home = React.createClass({
     render() {
         return (
             <div className={styles.wrap}>
-                <p className={styles.description}>
-                    Select fields will be added to form.
-                </p>
                 <h2 className={styles.title}>
                     Add Custom Field
                 </h2>
