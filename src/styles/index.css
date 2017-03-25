@@ -4,8 +4,15 @@ body, html {
 }
 
 body {
+    min-width: 320px;
     position: relative;
     box-sizing: border-box;
     padding: 55px 50px *;
     background: #FAFAFA;
+}
+
+@media screen and (max-width: 720px) {
+    body {
+        padding: 5px 5px *;
+    }
 }

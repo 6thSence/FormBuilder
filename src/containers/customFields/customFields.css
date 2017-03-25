@@ -1,36 +1,31 @@
-.wrap {
-    box-sizing: border-box;
-    padding: 13px 50px 0;
+.description {
+    margin: 0 0 15px;
+    padding: * 3px 15px;
+    border-bottom: solid 1px #E5E5E5;
+    color: #BFBFBF;
+    text-align: left;
+    font: 10px openSansItalic, Helvetica, Arial, sans-serif;
 }
 
-    .description {
-        margin: 0 0 15px;
-        padding: * 3px 15px;
-        border-bottom: solid 1px #E5E5E5;
-        color: #BFBFBF;
-        text-align: left;
-        font: 10px openSansItalic, Helvetica, Arial, sans-serif;
-    }
+.title {
+    margin: 0 0 15px;
+    color: #4F4F4F;
+    text-align: left;
+    font: 20px OpenSansRegular, Helvetica, Arial, sans-serif;
+}
 
-    .title {
-        margin: 0 0 15px;
-        color: #4F4F4F;
-        text-align: left;
-        font: 20px OpenSansRegular, Helvetica, Arial, sans-serif;
-    }
+.list {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-    .list {
+    .item {
         display: flex;
-        flex-direction: row;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        margin: * * 18px;
+        min-width: 140px;
     }
-
-        .item {
-            display: flex;
-            margin: * * 18px;
-            min-width: 140px;
-        }

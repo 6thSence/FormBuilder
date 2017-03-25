@@ -2,6 +2,8 @@
     box-sizing: border-box;
     padding: 10px 50px;
     min-height: 645px;
+    max-width: 960px;
+    margin: auto;
     border: solid 1px #E5E5E5;
     background: #fff;
 }
@@ -9,7 +11,6 @@
     .header {
         box-sizing: border-box;
         margin: 0 0 20px;
-        padding: 0 120px 0 0;
         min-height: 27px;
     }
 
@@ -71,12 +72,22 @@
     }
 
     .fields-list {
+        display: flex;
         margin: 0;
         padding: 0;
+        width: 100%;
         list-style: none;
+        flex-direction: column;
+        justify-content: center;
         -moz-user-select: none;
         -khtml-user-select: none;
         -webkit-user-select: none;
         -o-user-select: none;
         user-select: none;
     }
+
+@media screen and (max-width: 480px) {
+    .wrap {
+        padding: * 20px;
+    }
+}

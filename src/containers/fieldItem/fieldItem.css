@@ -4,17 +4,22 @@
     margin: 0 0 15px;
     min-height: 20px;
     align-items: center;
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
     .item {
         overflow: hidden;
         box-sizing: border-box;
+        margin: * * 10px;
         padding: 0 5px 0 0;
         color: #4F4F4F;
         font: 12px OpenSansRegular, Helvetica, Arial, sans-serif;
     }
 
     .question {
+        min-height: 25px;
+        position: relative;
         display: flex;
         box-sizing: border-box;
         padding: 0 25px;
@@ -52,10 +57,11 @@
         box-sizing: border-box;
         width: 26%;
         composes: item;
+        min-width: 150px;
     }
 
     .required {
-        margin: 0 60px 0 0;
+        flex-shrink: 0;
         composes: item;
         padding: 0 0 0 20px;
         background: inline('./assets/Checkmark.svg') 1px 50%/10px no-repeat,
@@ -81,13 +87,12 @@
     .remove {
         display: inline-block;
         /* stylelint-disable number-no-trailing-zeros */
-        background: inline('./assets/Remove.svg') center/contain no-repeat;
+        background: inline('./assets/Remove.svg') right/11px no-repeat;
         /* stylelint-enable number-no-trailing-zeros */
         vertical-align: middle;
         opacity: 1;
         transition: opacity .3s;
-        flex-shrink: 0;
-        size: 11px;
+        size: 71px;
 
         &:hover {
             opacity: .4;
@@ -100,4 +105,21 @@
     cursor: pointer;
     transform: translateY(-50%);
     size: 12px 25px;
+}
+
+@media screen and (max-width: 720px) {
+    .wrap {
+        margin: 0 0 30px;
+        flex-flow: row wrap;
+    }
+
+    .question {
+        flex: 0 0 100%;
+        margin: 0 0 20px;
+    }
+
+    .remove {
+        position: absolute 0 0 * *;
+        size: 31px;
+    }
 }

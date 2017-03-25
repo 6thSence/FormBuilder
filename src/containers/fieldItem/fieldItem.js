@@ -80,9 +80,8 @@ export default SortableElement(({ question, dispatch }) => {
 
     return (
         <li className={styles.wrap}>
-            <DragHandle />
-
             <div className={styles.question}>
+                <DragHandle />
 
                 { question.isEditing ?
                     <input type="text"
