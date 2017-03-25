@@ -37,6 +37,11 @@
         padding: 0 5px 0 0;
         max-width: 80%;
         text-overflow: ellipsis;
+        transition: background .3s;
+
+        &:hover {
+            background: #F0EEEE;
+        }
     }
 
     .required-star {
@@ -73,12 +78,16 @@
             cursor: pointer;
         }
 
-    .remove-button {
-        color: #FF8CA0;
-        text-decoration: none;
-        font: 10px OpenSansRegular, Helvetica, Arial, sans-serif;
+    .remove {
+        display: inline-block;
+        /* stylelint-disable number-no-trailing-zeros */
+        background: inline('./assets/Remove.svg') center/contain no-repeat;
+        /* stylelint-enable number-no-trailing-zeros */
+        vertical-align: middle;
+        opacity: 1;
         transition: opacity .3s;
-        size: 12px;
+        flex-shrink: 0;
+        size: 11px;
 
         &:hover {
             opacity: .4;

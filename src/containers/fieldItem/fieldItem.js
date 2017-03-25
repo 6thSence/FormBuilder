@@ -94,7 +94,8 @@ export default SortableElement(({ question, dispatch }) => {
                            onKeyPress={event => _onKeyPressEdit(event, question.id)}
                            autoFocus
                     />
-                    : <span className={styles.text}>
+                    : <span className={styles.text}
+                            onClick={event => _onClickEdite(event, question.id)}>
                         {question.text || "Write your question..."}
                         </span>
                 }
@@ -119,9 +120,11 @@ export default SortableElement(({ question, dispatch }) => {
                 </span>
             </div>
 
-            <a href="#"
-               className={styles['remove-button']}
-               onClick={event => _onClickRemove(event, question.id)}>Remove</a>
+            <a
+                href="#"
+                className={styles.remove}
+                onClick={event => _onClickRemove(event, question.id)}
+            />
         </li>
     )
 });

@@ -20,8 +20,13 @@ const getLabelClassName = type => {
             return styles.radio;
     }
 };
+
 const getListClassName = type => {
     switch(type) {
+        case questionTypes.radioButton:
+            return styles.radioButtonList;
+        case questionTypes.checkboxes:
+            return styles.checkboxesList;
         case questionTypes.select:
             return styles.selectList;
         default:
@@ -51,56 +56,72 @@ export default ({ choices, questionId, dispatch, type }) => {
         dispatch(addChoice(questionId))
     };
 
+    const _onBlurEdit = (event, questionId, choiceId, isEditing) => {
+        if (isEditing) {
+            dispatch(toggleEditChoice(questionId, choiceId, false));
+        }
+    };
+
     return(
         <div className={styles.wrap}>
-            <ul className={getListClassName(type, styles)}>
+            <ul className={getListClassName(type)}>
 
             {choices.map(choice =>
                 <li className={styles.item}
-                    key={choice.id}>
+                    key={choice.id}
+                >
 
                     {
                         choice.isEditing ?
-                            <input type="text"
-                                   value={choice.text}
-                                   placeholder="Write choice"
-                                   className={styles['choice-input']}
-                                   onChange={event => dispatch(changeChoiceText(event.target.value, questionId, choice.id))}
-                                   onBlur={() => dispatch(toggleEditChoice(questionId, choice.id, !choice.isEditing))}
-                                   onKeyPress={event => _onKeyPressEdit(event, questionId, choice.id, !choice.isEditing)}
-                                   autoFocus
+                            <input
+                                    id={`choice-id-${choice.id}`}
+                                    type="text"
+                                    value={choice.text}
+                                    placeholder="Write choice"
+                                    className={styles['choice-input']}
+                                    onChange={event => dispatch(changeChoiceText(event.target.value, questionId, choice.id))}
+                                    onKeyPress={event => _onKeyPressEdit(event, questionId, choice.id, !choice.isEditing)}
+                                    onBlur={event => _onBlurEdit(event, questionId, choice.id, choice.isEditing)}
+                                    autoFocus
                             />
                             :
                             <label className={getLabelClassName(type)}
                                      value={choice.text}
                                      id={choice.id}>
-
-                                { choice.text ? choice.text : "Write choice" }
-
+                                <span className={styles['choice-text']}
+                                      onClick={event => _onClickEdit(event, questionId, choice.id)} >
+                                    {choice.text || "Write choice"}
+                                </span>
                             </label>
                     }
 
                     {
                         !choice.isEditing &&
-                            <a href="#"
-                               className={styles.edit}
-                               onClick={event => _onClickEdit(event, questionId, choice.id)}/>
+                            <a
+                                href="#"
+                                className={styles.edit}
+                                onClick={event => _onClickEdit(event, questionId, choice.id)}
+                            />
                     }
 
                     {
-                        !choice.isEditing &&
-                            <a href="#"
+                        choice.isEditing &&
+                            <a
+                               href="#"
                                className={styles.remove}
-                               onClick={event => _onClickRemove(event, questionId, choice.id)}/>
+                               onMouseDown={event => _onClickRemove(event, questionId, choice.id)}
+                            />
                     }
 
                 </li>
             )}
-            </ul>
 
-            <a href="#"
-               className={styles.add}
-               onClick={event => _onClickAdd(event, questionId)}>+&nbsp;Add Choice</a>
+                <li>
+                    <a href="#"
+                       className={styles.add}
+                       onClick={event => _onClickAdd(event, questionId)}>Add Choice</a>
+                </li>
+            </ul>
         </div>
     )
 };

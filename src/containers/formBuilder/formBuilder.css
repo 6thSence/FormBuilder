@@ -43,6 +43,11 @@
         text-align: left;
         text-overflow: ellipsis;
         font: 10px openSansItalic, Helvetica, Arial, sans-serif;
+        transition: background .3s;
+
+        & .text:hover {
+            background: #F0EEEE;
+        }
     }
 
         .description-title {

@@ -5,6 +5,7 @@
 }
 
     .item {
+        margin: 0 0 3px;
         display: flex;
         align-items: center;
     }
@@ -31,6 +32,30 @@
         &:last-child {
             border: none;
         }
+    }
+
+    & .choice-input {
+        width: 90%;
+    }
+}
+
+.radioButtonList {
+    composes: list;
+
+    & .add,
+    & .choice-input {
+        padding: * * * 15px;
+        background: inline('./assets/Oval.svg') left/12px no-repeat;
+    }
+}
+
+.checkboxesList {
+    composes: list;
+
+    & .add,
+    & .choice-input {
+        padding: * * * 15px;
+        background: inline('./assets/Rectangle.svg') left/12px no-repeat;
     }
 }
 
@@ -70,6 +95,15 @@
         border: 0;
     }
 
+    .choice-text {
+        transition: background .3s;
+
+        &:hover {
+            background: #F0EEEE;
+            cursor: text;
+        }
+    }
+
     .edit {
         display: inline-block;
         margin: 0 2px 0 0;
@@ -105,6 +139,7 @@
 
     .add {
         display: block;
+        padding: 0 5px;
         color: #BEC4EA;
         text-decoration: none;
         font: 10px OpenSansRegular, Helvetica, Arial, Sans-serif;
