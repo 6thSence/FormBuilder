@@ -1,8 +1,23 @@
-Form Builder
+# Form Builder [on Heroku](https://enigmatic-sea-33386.herokuapp.com/)
 
-## How use it
+## Usage
+
+### Getting starting
 ``` javascript
-npm i
-npm start //for production
-npm dev //for development
+    npm i
+    npm start
 ```
+
+### or for development
+
+``` javascript
+    npm i
+    npm dev
+```
+
+### For testing
+
+```javascript
+    npm test
+```
+
