@@ -8,5 +8,5 @@
     font: 14px Helvetica, Arial, sans-serif;
     resize: none;
     size: 60% 100%;
-    -webkit-user-select: none;
+    user-select: none;
 }
