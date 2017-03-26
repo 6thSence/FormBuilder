@@ -2,26 +2,19 @@ export const checkIsEmptyQuestion = (question, isEmptyQuestion) => {
     const newIsEmptyQuestion = !question.text ? true : isEmptyQuestion;
     return newIsEmptyQuestion;
 };
+
 export const checkIsEmptyChoice = (question, isEmptyChoice) => {
     let newIsEmptyChoice = isEmptyChoice;
 
     if (question.choices) {
         question.choices.forEach(choice => {
-            newIsEmptyChoice = !choice.text ? true : isEmptyChoice;
+            newIsEmptyChoice = !choice.text ? true : newIsEmptyChoice;
         });
     }
 
     return newIsEmptyChoice;
 };
-export const checkIsMoreThenOneChoice = (question, isMoreThenOneChoice) => {
-    let newIsMoreThenOneChoice = isMoreThenOneChoice;
 
-    if (question.choices) {
-        newIsMoreThenOneChoice = question.choices.length < 2 ? true : isMoreThenOneChoice;
-    }
-
-    return newIsMoreThenOneChoice;
-};
 export const checkIsUniqueChoice = (question, isUniqueChoice) => {
     let newIsUniqueChoice = isUniqueChoice;
 
@@ -38,4 +31,14 @@ export const checkIsUniqueChoice = (question, isUniqueChoice) => {
     }
 
     return newIsUniqueChoice;
+};
+
+export const checkIsMoreThenOneChoice = (question, isMoreThenOneChoice) => {
+    let newIsMoreThenOneChoice = isMoreThenOneChoice;
+
+    if (question.choices) {
+        newIsMoreThenOneChoice = question.choices.length < 2 ? true : newIsMoreThenOneChoice;
+    }
+
+    return newIsMoreThenOneChoice;
 };
