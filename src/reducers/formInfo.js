@@ -1,5 +1,6 @@
 import uuidV1 from 'uuid/v1';
 
+import { questionTypes } from '../lib/questionTypes';
 import { ADD_FIELD,
     REMOVE_FIELD,
     SET_IS_REQUIRED,
@@ -61,22 +62,31 @@ export default function formInfo(state = initialState, action) {
     switch (action.type) {
         case ADD_FIELD:
             const id = uuidV1();
+            const question = {
+                type: action.fieldType,
+                id
+            };
+
+            switch (action.fieldType) {
+                case questionTypes.radioButton:
+                case questionTypes.checkboxes:
+                case questionTypes.select:
+                    question.choices = [
+                        {
+                            id: uuidV1()
+                        },
+                        {
+                            id: uuidV1()
+                        }
+                    ];
+                default:
+                    break;
+            }
 
             return [
-                    ...state,
-                    {
-                        type: action.fieldType,
-                        id,
-                        choices: [
-                            {
-                                id: uuidV1()
-                            },
-                            {
-                                id: uuidV1()
-                            }
-                        ]
-                    },
-                ];
+                ...state,
+                question
+            ];
 
         case REMOVE_FIELD:
             return [ ...state.filter(item => item.id !== action.id) ];

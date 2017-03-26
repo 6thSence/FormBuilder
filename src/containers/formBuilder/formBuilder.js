@@ -140,8 +140,6 @@ const FormBuilder = React.createClass({
                     </h2>
                 </div>
 
-                {isSaved && <Warning text="Form saved" isSaved />}
-
                 <p
                     className={styles.description}
                     onClick={this._onClickDescEdit}
@@ -192,6 +190,8 @@ const FormBuilder = React.createClass({
                     />
                 )}
 
+                {isSaved && <Warning text="Form saved" isSaved />}
+
                 <div className={styles['button-wrap']}>
                     <a
                         className={styles.button}
@@ -230,7 +230,7 @@ const mapStateToProps = state => {
         isSaved: state.formStatus.isSaved,
         questions: state.formInfo || [],
         warnings: state.formStatus.warnings,
-        warningsLib: warningsLib
+        warningsLib
     };
 };
 
