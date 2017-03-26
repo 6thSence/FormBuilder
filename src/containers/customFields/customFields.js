@@ -11,11 +11,14 @@ import styles from './customFields.css';
 const Home = React.createClass({
     onClickAddField(event, type) {
         event.preventDefault();
-
         this.props.dispatch(addField(type));
     },
 
     render() {
+        const {
+            questionTypes
+        } = this.props;
+
         return (
             <div className={styles.wrap}>
                 <h2 className={styles.title}>
@@ -53,4 +56,14 @@ const Home = React.createClass({
     }
 });
 
-export default connect(state => state)(Home);
+Home.propTypes = {
+    questionTypes: React.PropTypes.object.isRequired
+};
+
+const mapStateToProps = () => {
+    return {
+        questionTypes
+    };
+};
+
+export default connect(mapStateToProps)(Home);
