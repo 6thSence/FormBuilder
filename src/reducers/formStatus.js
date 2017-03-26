@@ -1,9 +1,11 @@
-import { SAVE_FORM,
-    SET_WARNINGS } from '../constants/formStatus';
+import {
+    SAVE_FORM,
+    SET_WARNINGS,
+} from '../constants/formStatus';
 
 const initialState = {
     isSaved: false,
-    warnings: []
+    warnings: [],
 };
 
 export default function formStatus(state = initialState, action) {
@@ -12,14 +14,14 @@ export default function formStatus(state = initialState, action) {
             return {
                 ...state,
                 isSaved: action.isSaved,
-                warnings: action.isSaved ? [] : state.warnings
+                warnings: action.isSaved ? [] : state.warnings,
             };
 
         case SET_WARNINGS:
             return {
                 ...state,
                 warnings: action.warnings,
-                isSaved: false
+                isSaved: false,
             };
         default:
             return state;

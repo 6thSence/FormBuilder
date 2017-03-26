@@ -5,7 +5,7 @@ import { removeFiled,
     setIsRequired,
     toggleEdit,
     changeQuestionText } from '../../actions/formInfo';
-import { questionTypes } from '../../lib/questionTypes';
+import questionTypes from '../../lib/questionTypes';
 
 import FileUpload from '../../components/fileUpload/fileUpload';
 import LineText from '../../components/lineText/lineText';

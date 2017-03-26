@@ -10,7 +10,8 @@
     "start": "NODE_ENV=production node server",
     "postinstall": "npm run build",
     "dev": "NODE_ENV=development node server",
-    "build": "./node_modules/webpack/bin/webpack.js --config ./webpack.config.js -p"
+    "build": "./node_modules/webpack/bin/webpack.js --config ./webpack.config.js -p",
+    "test": "eslint ./src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "body-parser": "^1.15.1",
     "css-loader": "^0.23.1",
+    "eslint": "^3.18.0",
+    "eslint-plugin-react": "^6.10.3",
     "express": "^4.15.2",
     "file-loader": "^0.8.5",
     "postcss-assets": "^4.0.1",
@@ -58,5 +61,12 @@
     "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3"
   }
 }

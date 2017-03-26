@@ -4,7 +4,7 @@ import { changeChoiceText,
     toggleEditChoice,
     removeChoice,
     addChoice } from '../../actions/formInfo';
-import { questionTypes } from '../../lib/questionTypes';
+import questionTypes from '../../lib/questionTypes';
 
 import styles from './listOfChoices.css';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addField } from '../../actions/formInfo';
-import { questionTypes } from '../../lib/questionTypes';
+import questionTypes from '../../lib/questionTypes';
 
 import Button from '../../components/button/button';
 

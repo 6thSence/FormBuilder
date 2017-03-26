@@ -1,70 +1,70 @@
 import {
-    ADD_FIELD,
-    REMOVE_FIELD,
-    SET_IS_REQUIRED,
-    EDIT_QUESTION,
-    CHANGE_QUESTION_TEXT,
-    TOGGLE_EDDIT_CHOICE,
-    CHANGE_CHOICE_TEXT,
-    REMOVE_CHOICE,
     ADD_CHOICE,
-    SET_FIELDS_LIST
+    ADD_FIELD,
+    CHANGE_CHOICE_TEXT,
+    CHANGE_QUESTION_TEXT,
+    EDIT_QUESTION,
+    REMOVE_CHOICE,
+    REMOVE_FIELD,
+    SET_FIELDS_LIST,
+    SET_IS_REQUIRED,
+    TOGGLE_EDDIT_CHOICE,
 } from '../constants/formInfo';
 
 export const addField = fieldType => ({
     type: ADD_FIELD,
-    fieldType
+    fieldType,
 });
 
 export const removeFiled = id => ({
     type: REMOVE_FIELD,
-    id
+    id,
 });
 
 export const setIsRequired = (id, isRequired) => ({
     type: SET_IS_REQUIRED,
     id,
-    isRequired
+    isRequired,
 });
 
 export const toggleEdit = (id, isEditing) => ({
     type: EDIT_QUESTION,
     id,
-    isEditing
+    isEditing,
 });
 
 export const changeQuestionText = (id, text) => ({
     type: CHANGE_QUESTION_TEXT,
     id,
-    text
+    text,
 });
 
 export const toggleEditChoice = (questionId, choiceId, isEditing) => ({
     type: TOGGLE_EDDIT_CHOICE,
     questionId,
     choiceId,
-    isEditing
+    isEditing,
 });
 
 export const changeChoiceText = (text, questionId, choiceId) => ({
     type: CHANGE_CHOICE_TEXT,
     questionId,
     choiceId,
-    text
+    text,
 });
 
 export const removeChoice = (questionId, choiceId) => ({
     type: REMOVE_CHOICE,
     questionId,
-    choiceId
+    choiceId,
 });
 
 export const addChoice = questionId => ({
     type: ADD_CHOICE,
-    questionId
+    questionId,
 });
 
 export const setFieldsList = newFieldsList => ({
     type: SET_FIELDS_LIST,
-    newFieldsList
+    newFieldsList,
 });

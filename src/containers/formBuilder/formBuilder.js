@@ -5,7 +5,7 @@ import { SortableContainer, arrayMove } from 'react-sortable-hoc';
 import { setFieldsList } from '../../actions/formInfo';
 import { saveForm, setWarnings } from '../../actions/formStatus';
 import { changeDescription, toggleDescriptionEdit } from '../../actions/description';
-import { warnings as warningsLib } from '../../lib/warnings';
+import warningsLib from '../../lib/warnings';
 import { checkIsEmptyQuestion,
     checkIsEmptyChoice,
     checkIsUniqueChoice,

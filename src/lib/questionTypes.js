@@ -1,8 +1,8 @@
-export const questionTypes = {
-    lineText: 'lineText',
-    radioButton: 'radioButton',
+export default {
     checkboxes: 'checkboxes',
-    select: 'select',
     fileUploader: 'fileUplaoder',
-    paragraphText: 'paragraphText'
+    lineText: 'lineText',
+    paragraphText: 'paragraphText',
+    radioButton: 'radioButton',
+    select: 'select',
 };

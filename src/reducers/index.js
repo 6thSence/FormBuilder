@@ -7,5 +7,5 @@ import formStatus from './formStatus';
 export default combineReducers({
     formInfo,
     description,
-    formStatus
-})
+    formStatus,
+});

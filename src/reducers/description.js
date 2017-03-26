@@ -1,8 +1,10 @@
-import { CHANGE_DESCRIPTION,
-    TOGGLE_DESC_EDIT } from '../constants/description';
+import {
+    CHANGE_DESCRIPTION,
+    TOGGLE_DESC_EDIT,
+} from '../constants/description';
 
 const initialState = {
-    isEditing: false
+    isEditing: false,
 };
 
 export default function description(state = initialState, action) {
@@ -10,12 +12,12 @@ export default function description(state = initialState, action) {
         case CHANGE_DESCRIPTION:
             return {
                 ...state,
-                text:  action.description
+                text: action.description,
             };
         case TOGGLE_DESC_EDIT:
             return {
                 ...state,
-                isEditing: action.isEditing
+                isEditing: action.isEditing,
             };
         default:
             return state;
