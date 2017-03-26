@@ -71,6 +71,7 @@ const FormBuilder = React.createClass({
     },
 
     createWarningsList(warnings) {
+        const warningsLib = this.props.warningsLib;
         const warningsList = [];
 
         warnings.isEmptyQuestion && warningsList.push({
@@ -107,7 +108,6 @@ const FormBuilder = React.createClass({
 
     saveForm(event) {
         event.preventDefault();
-
         this.validation();
     },
 
@@ -123,11 +123,14 @@ const FormBuilder = React.createClass({
     },
 
     render() {
-        const { questions,
-            description,
+        const {
+            descriptionIsEditing,
+            descriptionText,
+            dispatch,
             isSaved,
-            warnings,
-            dispatch } = this.props;
+            questions,
+            warnings
+        } = this.props;
 
         return (
             <div className={styles.wrap}>
@@ -141,39 +144,40 @@ const FormBuilder = React.createClass({
 
                 <p
                     className={styles.description}
-                    onClick={event => this._onClickDescEdit(event, !description.isEditing)}
+                    onClick={this._onClickDescEdit}
                 >
                     <span className={styles['description-title']}>
                         Description:&nbsp;
                     </span>
 
-                    {description.isEditing ?
-                        <input type="text"
-                               value={description.text}
-                               placeholder="Write your question..."
-                               className={styles['description-input']}
-                               onChange={event => dispatch(changeDescription(event.target.value))}
-                               onBlur={() => dispatch(toggleDescriptionEdit(!description.isEditing))}
-                               onKeyPress={event => this._onKeyPressDescEdit(event)}
-                               autoFocus
+                    {descriptionIsEditing ?
+                        <input
+                            type="text"
+                            className={styles['description-input']}
+                            value={descriptionText}
+                            placeholder="Write your question..."
+                            onChange={event => dispatch(changeDescription(event.target.value))}
+                            onBlur={() => dispatch(toggleDescriptionEdit(false))}
+                            onKeyPress={this._onKeyPressDescEdit}
+                            autoFocus
                         />
                         :
                         <span className={styles['description-text']}>
-                            {description.text || 'You need to add description...'}
+                            {descriptionText}
                         </span>
                     }
 
-                    {!description.isEditing ?
+                    {!descriptionIsEditing ?
                         <EditButton
-                            onClick={event => this._onClickDescEdit(event, !description.isEditing)}
+                            onClick={this._onClickDescEdit}
                         />
                         : null}
                 </p>
 
                 <div className={styles.list}>
                     <SortableList
-                        items={questions}
                         dispatch={dispatch}
+                        items={questions}
                         onSortEnd={this.onSortEnd}
                         useDragHandle={true}
                         />
@@ -182,10 +186,18 @@ const FormBuilder = React.createClass({
                 <CustomFields />
 
                 {warnings.map((warning, index) =>
-                    <Warning text={warning.text} key={`warning-${index}`} />)}
+                    <Warning
+                        text={warning.text}
+                        key={`warning-${index}`}
+                    />
+                )}
 
                 <div className={styles['button-wrap']}>
-                    <a className={styles.button} href="#" onClick={this.saveForm}>
+                    <a
+                        className={styles.button}
+                        href="#"
+                        onClick={this.saveForm}
+                    >
                         Save Form
                     </a>
                 </div>
@@ -194,12 +206,31 @@ const FormBuilder = React.createClass({
     }
 });
 
+FormBuilder.propTypes = {
+        descriptionIsEditing: React.PropTypes.bool.isRequired,
+        descriptionText: React.PropTypes.string,
+        isSaved: React.PropTypes.bool.isRequired,
+        questions: React.PropTypes.array.isRequired,
+        warnings: React.PropTypes.array,
+        warningsLib: React.PropTypes.object.isRequired
+};
+
+FormBuilder.defaultProps = {
+    descriptionIsEditing: false,
+    descriptionText: 'You need to add description...',
+    isSaved: false,
+    questions: [],
+    warnings: []
+};
+
 const mapStateToProps = state => {
     return {
-        questions: state.formInfo || [],
-        description: state.description,
+        descriptionIsEditing: state.description.isEditing,
+        descriptionText: state.description.text,
         isSaved: state.formStatus.isSaved,
-        warnings: state.formStatus.warnings
+        questions: state.formInfo || [],
+        warnings: state.formStatus.warnings,
+        warningsLib: warningsLib
     };
 };
 

@@ -29,7 +29,7 @@
         font: 14px openSansItalic, Helvetica, Arial, sans-serif;
         transition: background .3s;
 
-        & .text:hover {
+        & .description-text:hover {
             background: #F0EEEE;
         }
     }
@@ -40,14 +40,14 @@
         }
 
         .description-input {
+            display: inline-block;
             margin: 0;
             padding: 0;
-            display: inline-block;
             width: 80%;
             outline: none;
             border: none;
-            font: 14px openSansItalic, Helvetica, Arial, sans-serif;
             color: #000;
+            font: 14px openSansItalic, Helvetica, Arial, sans-serif;
         }
 
 .list {

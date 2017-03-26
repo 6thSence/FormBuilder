@@ -2,7 +2,6 @@ import { CHANGE_DESCRIPTION,
     TOGGLE_DESC_EDIT } from '../constants/description';
 
 const initialState = {
-    text: '',
     isEditing: false
 };
 
